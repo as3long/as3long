@@ -1,5 +1,6 @@
 ﻿package 
 {
+	import com.rush360.manger.BlogManger;
 	import com.rush360.manger.GameManger;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -24,6 +25,7 @@
 			GameManger.getThis()._stage = stage;
 			addChild(GameManger.getThis());
 			GameManger.getThis().init();
+			addChild(BlogManger.instance);
 		}
 		
 	}
