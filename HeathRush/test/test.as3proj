@@ -48,6 +48,8 @@
   <libraryPaths>
     <element path="E:\360rush\HeathRush\swc\as3isolib.v1.core.swc" />
     <element path="E:\360rush\HeathRush\swc\sucai.swc" />
+    <element path="E:\360rush\HeathRush\swc\cwin5.swc" />
+    <element path="E:\360rush\HeathRush\swc\xingqi.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
