@@ -22,9 +22,9 @@
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			GameManger.getThis()._stage = stage;
-			addChild(GameManger.getThis());
-			GameManger.getThis().init();
+			//GameManger.getThis()._stage = stage;
+			//addChild(GameManger.getThis());
+			//GameManger.getThis().init();
 			addChild(BlogManger.instance);
 		}
 		
