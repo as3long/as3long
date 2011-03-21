@@ -1,11 +1,11 @@
-package  {
+﻿package  {
 	
 	import flash.utils.flash_proxy;
 	import flash.utils.Proxy;
 	import flash.net.SharedObject;
 	
 	/**
-	 * Cookie
+	 * Cookie类
 	 * @author Kinglong(kinglong@gmail.com)
 	 * @since:2010-10-7
 	 */
