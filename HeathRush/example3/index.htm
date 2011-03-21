@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<title>WebBase应用案例二</title>
+<script type="text/javascript" src="webbase/js/swfobject/swfobject.js"></script>
+<script type="text/javascript" src="webbase/js/swfaddress/swfaddress.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"><style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style></head>
+<body bgcolor="#000000">
+<div align="center">
+<div  id="flashmov">
+Flash全站框架，WebBase应用案例
+</div>
+<script type="text/javascript">
+var expressInstall = "webbase/js/expressInstall.swf";
+		//变量
+		var flashVars = {};
+		//参数
+    	var params = {   
+			//右键菜单
+        	menu: "false",  
+			//缩放
+        	scale: "noscale",
+			//透明
+			wmode:"",
+			allowFullscreen: "true",
+			//背景色
+        	bgcolor: ""
+    	};
+		//属性
+		var attributes={};
+//embedSWF(FLASH地址,DIV的ID,FLASH宽,FLASH高,检查FLASH版本,FLASH升级地址,传给FLASH的变量,传给FLASH的参数,传给FLASH的属性)
+embedSWF("main.swf","flashmov", "100%", "100%","10",expressInstall,flashVars,params,attributes);
+</script>
+</div>
+</body>
+</html>
