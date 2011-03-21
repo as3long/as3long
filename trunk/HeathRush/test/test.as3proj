@@ -5,7 +5,7 @@
     <movie disabled="False" />
     <movie input="" />
     <movie path="..\html\src\demo\test.swf" />
-    <movie fps="30" />
+    <movie fps="12" />
     <movie width="800" />
     <movie height="600" />
     <movie version="10" />
@@ -26,6 +26,7 @@
     <option optimize="True" />
     <option showActionScriptWarnings="True" />
     <option showBindingWarnings="True" />
+    <option showInvalidCSS="True" />
     <option showDeprecationWarnings="True" />
     <option showUnusedTypeSelectorWarnings="True" />
     <option strict="True" />
@@ -46,9 +47,9 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <element path="E:\360rush\HeathRush\swc\as3isolib.v1.core.swc" />
-    <element path="E:\360rush\HeathRush\swc\sucai.swc" />
-    <element path="E:\360rush\HeathRush\swc\cwin5.swc" />
+    <element path="..\swc\as3isolib.v1.core.swc" />
+    <element path="..\swc\sucai.swc" />
+    <element path="..\swc\cwin5.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
