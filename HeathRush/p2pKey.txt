@@ -1,0 +1,4 @@
+Your (codename) Cirrus developer key is:
+e33c484cd86c05a1e212a399-2d0aa6450c4d
+
+rtmfp://p2p.rtmfp.net/e33c484cd86c05a1e212a399-2d0aa6450c4d/
