@@ -1,6 +1,6 @@
 ﻿package 
 {
-	import com.rush360.manger.BlogManger;
+	//import com.rush360.manger.BlogManger;
 	import com.rush360.manger.GameManger;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -22,10 +22,10 @@
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			//GameManger.getThis()._stage = stage;
-			//addChild(GameManger.getThis());
-			//GameManger.getThis().init();
-			addChild(BlogManger.instance);
+			GameManger.getThis()._stage = stage;
+			addChild(GameManger.getThis());
+			GameManger.getThis().init();
+			//addChild(BlogManger.instance);
 		}
 		
 	}
