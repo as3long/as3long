@@ -1,5 +1,6 @@
 ﻿package com.mySite 
 {
+	import flash.display.MovieClip;
 	import ui.Xingqi;
 	import com.webBase.event.ChildEvent;
 	import com.webBase.ParentBase;
@@ -30,6 +31,7 @@
 			for(var i:int=0;i<7;i++)
 			{
 				//trace(i);
+				xingqi["_x"+(i+1)].alpha=0.8;
 				xingqi["_x"+(i+1)]._image.source=_xml.child(i).@pic;
 				xingqi["_x"+(i+1)]._title.text=_xml.child(i).@title;
 				xingqi["_x"+(i+1)]._xingqi.text=_xml.child(i).@xingqi;
@@ -41,13 +43,14 @@
 		
 		private function mouse_over(e:Event):void
 		{
+			e.currentTarget.parent.setChildIndex(e.currentTarget, e.currentTarget.parent.numChildren - 1);
 			e.currentTarget.addEventListener(MouseEvent.MOUSE_OUT,mouse_out);
-			effect.tweener(e.currentTarget, {scaleX:1.2,scaleY:1.2} );
+			effect.tweener(e.currentTarget, {scaleX:1.2,scaleY:1.2,alpha:1} );
 		}
 		
 		private function mouse_out(e:Event):void
 		{
-			effect.tweener(e.currentTarget, {scaleX:1,scaleY:1} );
+			effect.tweener(e.currentTarget, {scaleX:1,scaleY:1,alpha:0.8} );
 		}
 		
 		private function startPlay(value:ChildEvent=null):void {
