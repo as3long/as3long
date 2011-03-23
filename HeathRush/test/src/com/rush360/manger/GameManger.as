@@ -34,7 +34,7 @@ package com.rush360.manger
 		private var me:MouseEvent;
 		private static var cell_size:Number = 50;
 		private var go:Boolean = false;
-		private var myGrid:Grid = null;
+		private var myGrid:grid = null;
 		private var path:Array = null;
 		private var iPath:int = 0;
 		
