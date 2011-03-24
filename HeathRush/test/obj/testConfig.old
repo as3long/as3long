@@ -14,22 +14,22 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'2011-3-24'</value>
+      <value>'2011/3/25'</value>
     </define>
     <source-path append="true">
-      <path-element>D:\rush360\as3long\HeathRush\test\src</path-element>
+      <path-element>E:\360rush\HeathRush\test\src</path-element>
       <path-element>D:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>D:\rush360\as3long\HeathRush\swc\as3isolib.v1.core.swc</path-element>
-      <path-element>D:\rush360\as3long\HeathRush\swc\sucai.swc</path-element>
-      <path-element>D:\rush360\as3long\HeathRush\swc\cwin5.swc</path-element>
-      <path-element>D:\rush360\as3long\HeathRush\swc\xiaonei_as3.swc</path-element>
-      <path-element>D:\rush360\as3long\HeathRush\test\lib\human.swc</path-element>
+      <path-element>E:\360rush\HeathRush\swc\as3isolib.v1.core.swc</path-element>
+      <path-element>E:\360rush\HeathRush\swc\sucai.swc</path-element>
+      <path-element>E:\360rush\HeathRush\swc\cwin5.swc</path-element>
+      <path-element>E:\360rush\HeathRush\swc\xiaonei_as3.swc</path-element>
+      <path-element>E:\360rush\HeathRush\test\lib\human.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>D:\rush360\as3long\HeathRush\test\src\Main.as</path-element>
+    <path-element>E:\360rush\HeathRush\test\src\Main.as</path-element>
   </file-specs>
   <default-background-color>#008000</default-background-color>
   <default-frame-rate>12</default-frame-rate>

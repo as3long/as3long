@@ -40,20 +40,22 @@ package com.glink.rr.commands.friends {
 
 		
 		public static const METHOD_NAME:String = 'friends.getFriends';
-		public static const SCHEMA:Array = ['page', 'count'];
+		public static const SCHEMA:Array = ['page', 'count','session_key'];
 		
 		public var page:int;
 		public var count:int;
 		
-		public function GetFriends(page:int=0, count:int=500) {
+		public var sessionkey:String;
+		
+		public function GetFriends(sessionkey:String = null,page:int = 0, count:int = 500) {
 			super(METHOD_NAME);
-			
+			this.sessionkey = sessionkey;
 			this.page = page;
 			this.count = count;
 		}
 		
 		override renren_internal function initialize():void {
-			applySchema(SCHEMA, page, count);
+			applySchema(SCHEMA, page,count,sessionkey);
 			super.renren_internal::initialize();
 		}
 	}

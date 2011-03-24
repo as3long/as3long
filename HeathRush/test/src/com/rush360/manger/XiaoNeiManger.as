@@ -25,17 +25,26 @@ package com.rush360.manger
 		
 		public var textField:TextField;
 		
+		public var sessionKey:String;
+		
 		public function XiaoNeiManger() 
+		{
+			
+		}
+		
+		public function init():void
 		{
 			textField = new TextField();
 			textField.multiline = true;
 			textField.wordWrap = true;
+			textField.width = stageObj.stageWidth;
+			textField.height = stageObj.stageHeight;
 			textField.text = "1233";
 			this.addChild(textField);
 			api = new XiaoNeiAPI(apiKey, secretKey);//两个参数你在校内申请开发后会得到
 			api.addEventListener(XiaoNeiAPIEvent.API_READY, apiReadyHandler);
 			api.toLogin();
-			//api.initAPI(uid, "2.02f5ee190cf203c6e73b307f26a1af6e.3600.1300964400-233171457");
+			//api.initAPI(uid, "2.bf3329fec7b5518a79b4edb8101f6bc4.3600.1300978800-233171457");
 			api.getAllocation(get_Allocation);
 		}
 		
@@ -48,13 +57,8 @@ package com.rush360.manger
 				var human:Human = new Human();
 				human._name.text = obj[i].name;
 				human._image.source = obj[i].headurl;
-				human.y = 320;
-				human.x = i * 100;
-				if (human.x > stageObj.stageWidth)
-				{
-					human.x = 0;
-					human.y += 120;
-				}
+				human.y = 220+120*Math.floor(i/8);
+				human.x = int(i%8) * 100;
 				this.addChild(human);
 			}
 			api.sendFeed(send_feed,0, "测试", "这是一段测试数据");
@@ -80,8 +84,11 @@ package com.rush360.manger
 		private function apiReadyHandler(event:Event):void {
 			//textField.appendText("\napi成功");
 			api.removeEventListener(XiaoNeiAPIEvent.API_READY, apiReadyHandler);
-			api.getUserDetail(get_UserDetail, uid);
-			api.getFriendsDetail(get_FriendsDetail);
+			trace(api.session);
+			sessionKey = api.session;
+			dispatchEvent(new Event("sessionKey"));
+			//api.getUserDetail(get_UserDetail, uid);
+			//api.getFriendsDetail(get_FriendsDetail);
 		}
 		
 		private function get_UserDetail(obj:Array):void 
@@ -90,7 +97,7 @@ package com.rush360.manger
 			var human:Human = new Human();
 			human._name.text = UserModel.instance.userDetail.name;
 			human._image.source = UserModel.instance.userDetail.headurl;
-			human.y = 200;
+			human.y = 100;
 			this.addChild(human);
 		}
 		
