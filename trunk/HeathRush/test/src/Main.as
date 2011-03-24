@@ -2,6 +2,7 @@
 {
 	//import com.rush360.manger.BlogManger;
 	import com.rush360.manger.GameManger;
+	import com.rush360.manger.RenrenManger;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import com.rush360.manger.XiaoNeiManger;
@@ -26,10 +27,19 @@
 			//addChild(GameManger.getThis());
 			//GameManger.getThis().init();
 			//addChild(BlogManger.instance);
-			addChild(XiaoNeiManger.instance);
 			XiaoNeiManger.instance.stageObj = stage;
-			XiaoNeiManger.instance.textField.width = stage.stageWidth;
-			XiaoNeiManger.instance.textField.height = stage.stageHeight;
+			XiaoNeiManger.instance.init();
+			addChild(XiaoNeiManger.instance);
+			XiaoNeiManger.instance.addEventListener("sessionKey", login_success);
+			
+		}
+		
+		private function login_success(e:Event):void 
+		{
+			RenrenManger.instance.sessionKey = XiaoNeiManger.instance.sessionKey;
+			RenrenManger.instance.stageObj = stage;
+			RenrenManger.instance.init();
+			addChild(RenrenManger.instance);
 		}
 		
 	}

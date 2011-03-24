@@ -38,8 +38,10 @@ package com.glink.rr.utils {
 	import com.glink.rr.RenRen;
 	import com.glink.rr.events.RenRenEvent;
 	import com.glink.rr.renren_internal;
+	import com.glink.rr.session.DesktopSession;
 	import com.glink.rr.session.IRenRenSession;
 	import com.glink.rr.session.WebSession;
+	import com.rush360.manger.RenrenManger;
 	
 	import flash.display.LoaderInfo;
 	import flash.events.EventDispatcher;
@@ -80,7 +82,7 @@ package com.glink.rr.utils {
 		protected var apiKey:String;
 		protected var secret:String;
 		protected var loaderInfo:LoaderInfo;
-		protected var sessionKey:String;
+		public var sessionKey:String;
 		/** @private */
 		protected var _activeSession:IRenRenSession;
 		
@@ -108,7 +110,7 @@ package com.glink.rr.utils {
 			
 			var savedCreds:SharedObject = getStoredSession();
 			
-			var flashVars:Object = loaderInfo != null?loaderInfo.parameters:{};
+			/*var flashVars:Object = loaderInfo != null?loaderInfo.parameters:{};
 			//Use the session provided by Ren ren, if one exists
 			if (flashVars.xn_sig_session_key != null) {
 				sessionKey = flashVars.xn_sig_session_key; 
@@ -117,19 +119,19 @@ package com.glink.rr.utils {
 			if (loaderInfo.url.slice(0, 5) == "file:" || Capabilities.playerType == "Desktop") {
 				//desktop application
 				//_activeSession = new DesktopSession(apiKey, this.secret);
+				_activeSession = new WebSession(apiKey, secret,RenrenManger.instance.sessionKey);
 			} else if(flashVars.xn_sig_api_key && flashVars.xn_sig_session_key) {
 				//Web application
 				_activeSession = new WebSession(flashVars.xn_sig_api_key, secret, flashVars.xn_sig_session_key);
 				(_activeSession as WebSession).expires = new Date(flashVars.xn_sig_expires);
 				(_activeSession as WebSession).renren_internal::_uid = flashVars.xn_sig_user;
-			} else if(flashVars.as_app_name) {
-				//jsBridge application
-				//_activeSession = new JSSession(apiKey, flashVars.as_app_name);
 			} else {
 				//could not determine ren ren connection type, so just use DesktopSession
 				//_activeSession = new DesktopSession(apiKey, secret);
-			}
-			_activeSession.sessionKey = sessionKey;
+				_activeSession = new WebSession(apiKey, secret,RenrenManger.instance.sessionKey);
+			}*/
+			_activeSession = new WebSession(apiKey, secret,RenrenManger.instance.sessionKey);
+			_activeSession.sessionKey = RenrenManger.instance.sessionKey;
 			
 			_activeSession.addEventListener(RenRenEvent.VERIFYING_SESSION, onVerifyingSession);
 			
