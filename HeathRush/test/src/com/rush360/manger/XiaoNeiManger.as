@@ -34,8 +34,8 @@ package com.rush360.manger
 			this.addChild(textField);
 			api = new XiaoNeiAPI(apiKey, secretKey);//两个参数你在校内申请开发后会得到
 			api.addEventListener(XiaoNeiAPIEvent.API_READY, apiReadyHandler);
-			//api.toLogin();
-			api.initAPI(uid, "2.02f5ee190cf203c6e73b307f26a1af6e.3600.1300964400-233171457");
+			api.toLogin();
+			//api.initAPI(uid, "2.02f5ee190cf203c6e73b307f26a1af6e.3600.1300964400-233171457");
 			api.getAllocation(get_Allocation);
 		}
 		
