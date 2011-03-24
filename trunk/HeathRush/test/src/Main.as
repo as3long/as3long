@@ -27,6 +27,7 @@
 			//GameManger.getThis().init();
 			//addChild(BlogManger.instance);
 			addChild(XiaoNeiManger.instance);
+			XiaoNeiManger.instance.stageObj = stage;
 			XiaoNeiManger.instance.textField.width = stage.stageWidth;
 			XiaoNeiManger.instance.textField.height = stage.stageHeight;
 		}

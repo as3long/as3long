@@ -26,6 +26,7 @@
     <option optimize="True" />
     <option showActionScriptWarnings="True" />
     <option showBindingWarnings="True" />
+    <option showInvalidCSS="True" />
     <option showDeprecationWarnings="True" />
     <option showUnusedTypeSelectorWarnings="True" />
     <option strict="True" />
@@ -50,6 +51,7 @@
     <element path="..\swc\sucai.swc" />
     <element path="..\swc\cwin5.swc" />
     <element path="..\swc\xiaonei_as3.swc" />
+    <element path="lib\human.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
