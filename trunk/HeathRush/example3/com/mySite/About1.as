@@ -14,7 +14,17 @@
 		override protected function init():void 
 		{
 			gotoAndPlay(2)
+			//this.addEventListener(ChildEvent.END_PLAY, startPlay)//开始播放结束动画
+			
+			net.loadXML("data/about.xml", getData)
 		}
+		
+		private function getData(xml:XML):void {
+			//trace(xml);
+			//trace(_about);
+			_about.jieshao.text=xml.child(0).@jieshao;
+		}
+		
 		public function install():void {
 			var mcBtn:SimpleButton=getChildByName("btn") as SimpleButton
 			if(mcBtn)mcBtn.addEventListener(MouseEvent.CLICK, click)
