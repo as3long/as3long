@@ -1,4 +1,4 @@
-﻿package  {
+﻿package com.rush360.net{
 	
 	import flash.utils.flash_proxy;
 	import flash.utils.Proxy;
