@@ -1,6 +1,7 @@
 ﻿package 
 {
 	//import com.rush360.manger.BlogManger;
+	import asunit.textui.ResultPrinter;
 	import com.rush360.manger.GameManger;
 	import com.rush360.manger.RenrenManger;
 	import flash.display.Sprite;
@@ -26,11 +27,17 @@
 			//GameManger.getThis()._stage = stage;
 			//addChild(GameManger.getThis());
 			//GameManger.getThis().init();
+			trace(213);
+			var sharedFie:ResultPrinter = SharedFileExample.PRINTER = new ResultPrinter(true, false);
+			sharedFie.width = 800;
+			sharedFie.height = 600;
+			addChild(sharedFie);
+			var exp:Example = new Example();
 			//addChild(BlogManger.instance);
-			XiaoNeiManger.instance.stageObj = stage;
-			XiaoNeiManger.instance.init();
-			addChild(XiaoNeiManger.instance);
-			XiaoNeiManger.instance.addEventListener("sessionKey", login_success);
+			//XiaoNeiManger.instance.stageObj = stage;
+			//XiaoNeiManger.instance.init();
+			//addChild(XiaoNeiManger.instance);
+			//XiaoNeiManger.instance.addEventListener("sessionKey", login_success);
 			
 		}
 		

@@ -8,8 +8,8 @@
     <movie fps="12" />
     <movie width="800" />
     <movie height="600" />
-    <movie version="10" />
-    <movie background="#008000" />
+    <movie version="11" />
+    <movie background="#000000" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
