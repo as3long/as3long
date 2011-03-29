@@ -9,6 +9,7 @@ package com.rush360.manger
 	import as3isolib.geom.Pt;
 	import com.rush360.pathing.AStar;
 	import com.rush360.pathing.Grid;
+	import com.rush360.tool.GTween;
 	import eDpLib.events.ProxyEvent;
 	import flash.display.Sprite;
 	import flash.display.Stage;
@@ -28,7 +29,7 @@ package com.rush360.manger
 		public var grid:IsoGrid;
 		public var scene:IsoScene;
 		public var view:IsoView;
-		public var box:IsoBox;
+		public var box:IsoSprite;
 		
 		private var pt:Pt;
 		private var me:MouseEvent;
@@ -37,6 +38,11 @@ package com.rush360.manger
 		private var myGrid:Grid = null;
 		private var path:Array = null;
 		private var iPath:int = 0;
+		private var myPeople:people;
+		private var bX:Number=0;
+		private var bY:Number = 0;
+		
+		private var speed:Number = 0.125;
 		
 		private var testArr:Array = 
 		[
@@ -74,15 +80,106 @@ package com.rush360.manger
 		}
 		
 		private function enter_frame(e:Event):void 
-		{
-			if (go==true&&iPath < path.length)
+		{	
+			if (myPeople.currentFrame == 4)
 			{
-				box.moveTo(path[iPath].x * cell_size, path[iPath].y * cell_size,0);
+				myPeople.gotoAndPlay("z1");
+			}
+			else if (myPeople.currentFrame == 8)
+			{
+				myPeople.gotoAndPlay("z2");
+			}
+			else if (myPeople.currentFrame == 12)
+			{
+				myPeople.gotoAndPlay("z3");
+			}
+			else if (myPeople.currentFrame == 16)
+			{
+				myPeople.gotoAndPlay("z4");
+			}
+			
+			if (go==true&&iPath < path.length)
+			{	
+				if (path[iPath + 1])
+				{
+					if (path[iPath].y < path[iPath + 1].y)
+					{
+						bY+= speed;
+					}
+					else if (path[iPath].y > path[iPath + 1].y)
+					{
+						bY-= speed;
+					}
+					
+					if (path[iPath].x < path[iPath + 1].x)
+					{
+						bX += speed;
+					}
+					else if (path[iPath].x > path[iPath + 1].x)
+					{
+						bX -= speed;
+					}
+					
+					if (path[iPath].x < path[iPath + 1].x)
+					{
+						if (myPeople.currentFrame <=4)
+						{
+							
+						}
+						else
+						{
+							myPeople.gotoAndPlay("z1");
+						}
+					}
+					else if (path[iPath].x > path[iPath + 1].x)
+					{
+						if (myPeople.currentFrame <=16&&myPeople.currentFrame>12)
+						{
+							
+						}
+						else
+						{
+							myPeople.gotoAndPlay("z4");
+						}
+					}
+					else
+					{
+						if (path[iPath].y < path[iPath + 1].y)
+						{
+							if (myPeople.currentFrame <=8&&myPeople.currentFrame>4)
+							{
+								
+							}
+							else
+							{
+								myPeople.gotoAndPlay("z2");
+							}
+						}
+						else if (path[iPath].y > path[iPath + 1].y)
+						{
+							if (myPeople.currentFrame <=12&&myPeople.currentFrame>8)
+							{
+								
+							}
+							else
+							{
+								myPeople.gotoAndPlay("z3");
+							}
+						}
+					}
+				}
+				box.moveTo((path[iPath].x + bX) * cell_size, (path[iPath].y+bY) * cell_size, 0);
 				scene.render ();
-				iPath++;
+				if (bX == 1 || bY == 1||bX == -1||bY == -1)
+				{
+					bX = 0;
+					bY = 0;
+					iPath++;
+				}
 			}
 			else
 			{
+				//myPeople.stop();
 				go = false;
 			}
 		}
@@ -92,9 +189,12 @@ package com.rush360.manger
 			trace("程序开始执行");
 			//*** scence要先把grid加上
 			myGrid = new Grid(10, 10);
-			box = new IsoBox();
-			box.setSize(cell_size, cell_size, cell_size);
+			box = new IsoSprite();//new IsoBox();
+			myPeople = new people();
+			myPeople.gotoAndPlay("z1");
+			box.sprites = [myPeople];
 			scene.addChild(box);
+			box.setSize(cell_size, cell_size, cell_size);
 			for (var i:int = 0; i < 10; i++)
 			{
 				for (var j:int = 0; j < 10; j++)
@@ -115,7 +215,8 @@ package com.rush360.manger
 						scene.addChild(diban);*/
 					}
 				}
-			}	
+			}
+			
 			grid.addEventListener(MouseEvent.CLICK, grid_click);
 			scene.render();
 		}
