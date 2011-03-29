@@ -24,16 +24,17 @@
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			//GameManger.getThis()._stage = stage;
-			//addChild(GameManger.getThis());
-			//GameManger.getThis().init();
-			trace(213);
-			var sharedFie:ResultPrinter = SharedFileExample.PRINTER = new ResultPrinter(true, false);
-			sharedFie.width = 800;
-			sharedFie.height = 600;
-			addChild(sharedFie);
-			var exp:Example = new Example();
+			//trace(213);
+			//var sharedFie:ResultPrinter = SharedFileExample.PRINTER = new ResultPrinter(true, false);
+			//sharedFie.width = 800;
+			//sharedFie.height = 600;
+			//addChild(sharedFie);
+			//var exp:Example = new Example();
 			//addChild(BlogManger.instance);
+			
+			GameManger.getThis()._stage = stage;
+			addChild(GameManger.getThis());
+			GameManger.getThis().init();
 			//XiaoNeiManger.instance.stageObj = stage;
 			//XiaoNeiManger.instance.init();
 			//addChild(XiaoNeiManger.instance);
