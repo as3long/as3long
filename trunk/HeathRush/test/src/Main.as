@@ -11,6 +11,7 @@
 	 * ...
 	 * @author 黄龙
 	 */
+	[SWF(width="800",height="600",backgroundColor="#333333")]
 	public class Main extends Sprite 
 	{
 		
