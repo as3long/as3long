@@ -1,4 +1,4 @@
-﻿package 
+﻿package
 {
 	//import com.rush360.manger.BlogManger;
 	import asunit.textui.ResultPrinter;
@@ -31,10 +31,10 @@
 			//addChild(sharedFie);
 			//var exp:Example = new Example();
 			//addChild(BlogManger.instance);
-			
-			GameManger.getThis()._stage = stage;
-			addChild(GameManger.getThis());
-			GameManger.getThis().init();
+			//trace(int(1.9));
+			//GameManger.getThis()._stage = stage;
+			//addChild(GameManger.getThis());
+			//GameManger.getThis().init();
 			//XiaoNeiManger.instance.stageObj = stage;
 			//XiaoNeiManger.instance.init();
 			//addChild(XiaoNeiManger.instance);
