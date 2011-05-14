@@ -18,7 +18,7 @@
     </define>
     <source-path append="true">
       <path-element>E:\360rush\HeathRush\test\src</path-element>
-      <path-element>d:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
+      <path-element>D:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <include-libraries>
       <library>E:\360rush\HeathRush\swc\carlib.swc</library>
