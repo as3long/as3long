@@ -3,7 +3,7 @@
 
   <id>com.gamevil.zenonia2</id>
 
-  <version>1.0</version>
+  <version>1.1</version>
 
   <filename>test</filename>
 
@@ -27,7 +27,21 @@
 
   
 
-<!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
 
   <name>test</name>
 
@@ -49,7 +63,21 @@
 
   
 
-<!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
 
   <copyright/>
 
@@ -71,11 +99,21 @@
     
     
     
+    <image29x29>AppIconsForPublish/t29.png</image29x29>
+    <image57x57>AppIconsForPublish/t57.png</image57x57>
+    <image512x512>AppIconsForPublish/t512.png</image512x512>
   </icon>
 
   <customUpdateUI>false</customUpdateUI>
 
   <allowBrowserInvocation>false</allowBrowserInvocation>
+
+
+
+
+
+
+
 
 
 
