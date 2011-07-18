@@ -1,0 +1,498 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<meta content="Config,uk.co.bigroom.tetris.Config,acceleration,blockSize,gameX,gameY,keyDrop,keyLeft,keyRight,keyRotLeft,keyRotRight,nextX,nextY,playHeight,playWidth,scorePerLine,sndRemoveLine,sndTetradLand,sndTetradMove,startSpeed,tetradF,tetradI,tetradL,tetradO,tetradS,tetradT,tetradZ" name="keywords">
+<title>uk.co.bigroom.tetris.Config</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'Config - Big Room - Tetris game engine';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Big Room - Tetris game engine</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?uk/co/bigroom/tetris/Config.html&amp;uk/co/bigroom/tetris/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;Config</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class Config"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">uk.co.bigroom.tetris</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class Config</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="../../../../BloxConfig.html">BloxConfig</a></td>
+</tr>
+</table>
+<p></p>
+  Configuration settings for a tetris game. You should pass
+  an instance of this class or of a derived class to the 
+  constructor for the tetris controller class.
+  <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#acceleration">acceleration</a> : Number = 1<div class="summaryTableDescription">
+   How quickly the game speeds up.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#blockSize">blockSize</a> : uint = 0<div class="summaryTableDescription">
+   The width and height of a cell.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#gameX">gameX</a> : uint = 0<div class="summaryTableDescription">
+   The horizontal position of the top left corner of the game.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#gameY">gameY</a> : uint = 0<div class="summaryTableDescription">
+   The vertical position of the top left corner of the game.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#keyDrop">keyDrop</a> : uint = 0<div class="summaryTableDescription">
+   The keyCode of the key used to make the tetrad drop rapidly.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#keyLeft">keyLeft</a> : uint = 0<div class="summaryTableDescription">
+   The keyCode of the key used to move the tetrad left.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#keyRight">keyRight</a> : uint = 0<div class="summaryTableDescription">
+   The keyCode of the key used to move the tetrad right.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#keyRotLeft">keyRotLeft</a> : uint = 0<div class="summaryTableDescription">
+   The keyCode of the key used to rotate the tetrad left.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#keyRotRight">keyRotRight</a> : uint = 0<div class="summaryTableDescription">
+   The keyCode of the key used to rotate the tetrad right.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#nextX">nextX</a> : uint = 0<div class="summaryTableDescription">
+   The horizontal position of the top left corner of the next tetrad display.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#nextY">nextY</a> : uint = 0<div class="summaryTableDescription">
+   The vertical position of the top left corner of the next tetrad display.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#playHeight">playHeight</a> : uint = 0<div class="summaryTableDescription">
+   How many cells tall is the play area.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#playWidth">playWidth</a> : uint = 0<div class="summaryTableDescription">
+   How many cells wide is the play area.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#scorePerLine">scorePerLine</a> : uint = 10<div class="summaryTableDescription">
+   How many points are awarded for each line cleared.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sndRemoveLine">sndRemoveLine</a> : String = "null"<div class="summaryTableDescription">
+   The sound to play when a line is removed.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sndTetradLand">sndTetradLand</a> : String = "null"<div class="summaryTableDescription">
+   The sound to play when a tetrad lands.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#sndTetradMove">sndTetradMove</a> : String = "null"<div class="summaryTableDescription">
+   The sound to play when a tetrad moves.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#startSpeed">startSpeed</a> : Number = 400<div class="summaryTableDescription">
+   The initial speed of the game.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#tetradF">tetradF</a> : String = "null"<div class="summaryTableDescription">
+   The sprite to use for an F-shaped tetrad.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#tetradI">tetradI</a> : String = "null"<div class="summaryTableDescription">
+   The sprite to use for an I-shaped tetrad.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#tetradL">tetradL</a> : String = "null"<div class="summaryTableDescription">
+   The sprite to use for an L-shaped tetrad.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#tetradO">tetradO</a> : String = "null"<div class="summaryTableDescription">
+   The sprite to use for an O-shaped tetrad.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#tetradS">tetradS</a> : String = "null"<div class="summaryTableDescription">
+   The sprite to use for an S-shaped tetrad.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#tetradT">tetradT</a> : String = "null"<div class="summaryTableDescription">
+   The sprite to use for a T-shaped tetrad.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#tetradZ">tetradZ</a> : String = "null"<div class="summaryTableDescription">
+   The sprite to use for a Z-shaped tetrad.</div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#Config()">Config</a>()</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">Config</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="acceleration"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">acceleration</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var acceleration:Number = 1</code><p>
+   How quickly the game speeds up. The value should be lower 
+   than but close to 1. A value of 1 means it doesn't speed 
+   up at all. Smaller numbers causes it to speed up more quickly.
+   </p></div>
+<a name="blockSize"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">blockSize</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var blockSize:uint = 0</code><p>
+   The width and height of a cell.
+   </p></div>
+<a name="gameX"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">gameX</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var gameX:uint = 0</code><p>
+   The horizontal position of the top left corner of the game.
+   </p></div>
+<a name="gameY"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">gameY</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var gameY:uint = 0</code><p>
+   The vertical position of the top left corner of the game.
+   </p></div>
+<a name="keyDrop"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">keyDrop</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var keyDrop:uint = 0</code><p>
+   The keyCode of the key used to make the tetrad drop rapidly.
+   Use 0 for no key.
+   </p></div>
+<a name="keyLeft"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">keyLeft</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var keyLeft:uint = 0</code><p>
+   The keyCode of the key used to move the tetrad left. 
+   Use 0 for no key.
+   </p></div>
+<a name="keyRight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">keyRight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var keyRight:uint = 0</code><p>
+   The keyCode of the key used to move the tetrad right.
+   Use 0 for no key.
+   </p></div>
+<a name="keyRotLeft"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">keyRotLeft</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var keyRotLeft:uint = 0</code><p>
+   The keyCode of the key used to rotate the tetrad left.
+   Use 0 for no key.
+   </p></div>
+<a name="keyRotRight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">keyRotRight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var keyRotRight:uint = 0</code><p>
+   The keyCode of the key used to rotate the tetrad right.
+   Use 0 for no key.
+   </p></div>
+<a name="nextX"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nextX</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var nextX:uint = 0</code><p>
+   The horizontal position of the top left corner of the next tetrad display.
+   </p></div>
+<a name="nextY"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nextY</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var nextY:uint = 0</code><p>
+   The vertical position of the top left corner of the next tetrad display.
+   </p></div>
+<a name="playHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">playHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var playHeight:uint = 0</code><p>
+   How many cells tall is the play area.
+   </p></div>
+<a name="playWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">playWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var playWidth:uint = 0</code><p>
+   How many cells wide is the play area.
+   </p></div>
+<a name="scorePerLine"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">scorePerLine</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var scorePerLine:uint = 10</code><p>
+   How many points are awarded for each line cleared.
+   </p></div>
+<a name="sndRemoveLine"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sndRemoveLine</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var sndRemoveLine:String = "null"</code><p>
+   The sound to play when a line is removed. This is the name
+   of the class the sound is exported as. Use null for no sound.
+   </p></div>
+<a name="sndTetradLand"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sndTetradLand</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var sndTetradLand:String = "null"</code><p>
+   The sound to play when a tetrad lands. This is the name
+   of the class the sound is exported as. Use null for no sound.
+   </p></div>
+<a name="sndTetradMove"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sndTetradMove</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var sndTetradMove:String = "null"</code><p>
+   The sound to play when a tetrad moves. This is the name
+   of the class the sound is exported as. Use null for no sound.
+   </p></div>
+<a name="startSpeed"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">startSpeed</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var startSpeed:Number = 400</code><p>
+   The initial speed of the game. Represents the number of 
+   milliseconds between each drop of the tetrad. So smaller
+   numbers are fatser.
+   </p></div>
+<a name="tetradF"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">tetradF</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var tetradF:String = "null"</code><p>
+   The sprite to use for an F-shaped tetrad. This is the name
+   of the class the library asset is exported as.
+   </p></div>
+<a name="tetradI"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">tetradI</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var tetradI:String = "null"</code><p>
+   The sprite to use for an I-shaped tetrad. This is the name
+   of the class the library asset is exported as.
+   </p></div>
+<a name="tetradL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">tetradL</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var tetradL:String = "null"</code><p>
+   The sprite to use for an L-shaped tetrad. This is the name
+   of the class the library asset is exported as.
+   </p></div>
+<a name="tetradO"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">tetradO</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var tetradO:String = "null"</code><p>
+   The sprite to use for an O-shaped tetrad. This is the name
+   of the class the library asset is exported as.
+   </p></div>
+<a name="tetradS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">tetradS</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var tetradS:String = "null"</code><p>
+   The sprite to use for an S-shaped tetrad. This is the name
+   of the class the library asset is exported as.
+   </p></div>
+<a name="tetradT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">tetradT</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var tetradT:String = "null"</code><p>
+   The sprite to use for a T-shaped tetrad. This is the name
+   of the class the library asset is exported as.
+   </p></div>
+<a name="tetradZ"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">tetradZ</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var tetradZ:String = "null"</code><p>
+   The sprite to use for a Z-shaped tetrad. This is the name
+   of the class the library asset is exported as.
+   </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="Config()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">Config</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function Config()</code>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">&copy; Big Room Ventures Ltd. 2007-2008</center>
+</div>
+</body>
+</html>
+<!--© Big Room Ventures Ltd. 2007-2008-->
