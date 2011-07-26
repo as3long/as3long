@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<application xmlns="http://ns.adobe.com/air/application/2.0">
+<application xmlns="http://ns.adobe.com/air/application/2.7">
 
-  <id>com.gamevil.zenonia2</id>
+  <id>test</id>
 
-  <version>1.2</version>
+  <versionNumber>1.0.0</versionNumber>
+
+  <versionLabel/>
 
   <filename>test</filename>
 
@@ -15,89 +17,9 @@
 
   
 
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
 <!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
 
   <name>test</name>
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
 
   
 
@@ -116,47 +38,35 @@
     <visible>true</visible>
     <fullScreen>true</fullScreen>
     <aspectRatio>portrait</aspectRatio>
-    <renderMode>auto</renderMode>
+    <renderMode>gpu</renderMode>
     <autoOrients>true</autoOrients>
   </initialWindow>
 
-  <icon>
-    
-    
-    
-    
-    
-    
-    <image29x29>AppIconsForPublish/t29.png</image29x29>
-    <image57x57>AppIconsForPublish/t57.png</image57x57>
-    <image512x512>AppIconsForPublish/t512.png</image512x512>
-  </icon>
+  <icon/>
 
   <customUpdateUI>false</customUpdateUI>
 
   <allowBrowserInvocation>false</allowBrowserInvocation>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <android>
+    <manifestAdditions>
+      
+      <![CDATA[<manifest>
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<uses-permission android:name="android.permission.CAMERA"/>
+<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+<uses-permission android:name="android.permission.WAKE_LOCK"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+</manifest>]]>
+    </manifestAdditions>
+  </android>
 
 
 </application>
