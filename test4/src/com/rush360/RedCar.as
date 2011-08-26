@@ -1,5 +1,6 @@
 package com.rush360 
 {
+	import com.rush360.interfac.Icar;
 	/**
 	 * ...Icar的实现
 	 * @author 360rush
@@ -7,14 +8,14 @@ package com.rush360
 	public class RedCar implements Icar 
 	{
 		
-		public function RedCar() 
+		public function RedCar(str:String) 
 		{
 			
 		}
 		
 		public function run():void
 		{
-			trace("这是个红色的车");
+			trace("这个红色的车在跑");
 		}
 		
 	}

@@ -1,5 +1,11 @@
 package 
 {
+	import com.rush360.interfac.Icar;
+	import com.rush360.Manager.AppBean;
+	import com.rush360.Manager.InjectManager;
+	import com.rush360.Manager.XmlManager;
+	import com.rush360.People;
+	import com.rush360.RedCar;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.net.URLLoader;
@@ -10,7 +16,7 @@ package
 	 * ...
 	 * @author 360rush
 	 */
-	[Frame(factoryClass="Preloader")]
+	[Frame(factoryClass = "Preloader")]
 	public class Main extends Sprite 
 	{
 		private var loader:URLLoader;
@@ -25,21 +31,17 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			traceTxt = new TextField();
-			traceTxt.width = 800;
-			traceTxt.height = 600;
-			addChild(traceTxt);
-			traceTxt.text = "正在加载...";
-			loader = new URLLoader();
-			loader.addEventListener(Event.COMPLETE, load_ok);
-			loader.load(new URLRequest("http://www.360rush.com"));
+			XmlManager.instance.addEventListener(Event.COMPLETE, load_ok);
+			XmlManager.instance.loadXml("di/B_people_car.xml");
 		}
 		
 		private function load_ok(e:Event):void 
 		{
-			traceTxt.text = loader.data;
+			var appBean:AppBean = new AppBean(XmlManager.instance.urlLoader.data);
+			var people:People = People(appBean.getBean("people"));
+			people.usecar();
+			people.eatApple();
 		}
-
 	}
 
 }
