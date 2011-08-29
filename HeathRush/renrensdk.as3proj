@@ -4,12 +4,12 @@
   <output>
     <movie disabled="False" />
     <movie input="" />
-    <movie path="..\html\src\demo\test.swf" />
-    <movie fps="12" />
-    <movie width="550" />
-    <movie height="400" />
+    <movie path="bin\renrensdk.swf" />
+    <movie fps="30" />
+    <movie width="800" />
+    <movie height="600" />
     <movie version="10" />
-    <movie background="#333333" />
+    <movie background="#FFFFFF" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
@@ -42,16 +42,11 @@
   </build>
   <!-- SWC Include Libraries -->
   <includeLibraries>
-    <element path="..\swc\carlib.swc" />
+    <!-- example: <element path="..." /> -->
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <element path="..\swc\as3isolib.v1.core.swc" />
-    <element path="..\swc\sucai.swc" />
-    <element path="..\swc\cwin5.swc" />
-    <element path="..\swc\xiaonei_as3.swc" />
-    <element path="lib\human.swc" />
-    <element path="lib\zaixiangangqing.swc" />
+    <!-- example: <element path="..." /> -->
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -71,11 +66,11 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\GangQin.as" />
+    <compile path="renrensdk\src\Test.mxml" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
-    <hidden path="src\com\rush360\pathing\AStar_fast.as" />
+    <!-- example: <hidden path="..." /> -->
   </hiddenPaths>
   <!-- Executed before build -->
   <preBuildCommand />
@@ -83,7 +78,7 @@
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->
   <options>
-    <option showHiddenPaths="True" />
+    <option showHiddenPaths="False" />
     <option testMovie="Default" />
   </options>
 </project>
