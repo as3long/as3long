@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   creationComplete="init();" viewSourceURL="srcview/index.html">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Panel x="0" y="0" width="950" height="600" title="人人网开放平台 ActionScript SDK">
+		<s:Button x="10" y="10" id="authButton" label="授权" click="auth(event)"/>
+		<mx:Tree x="10" y="43" width="283" height="505" id="apiTree" labelField="@label" change="handleChangeMethod(event)">
+			<mx:XMLListCollection id="apiTreeData">
+				<fx:XMLList>
+					<node label="基础API">
+						<node label="管理类接口">
+							<node label="admin.getAllocation"/>
+						</node>
+						<node label="好友关系类接口">
+							<node label="friends.areFriends"/>
+							<node label="friends.get"/>
+							<node label="friends.getFriends"/>
+							<node label="friends.getAppFriends"/>
+						</node>
+						<node label="邀请类接口">
+							<node label="invitations.createLink"/>
+							<node label="invitations.getInfo"/>
+						</node>
+						<node label="通知类接口">
+							<node label="notifications.send"/>
+							<node label="notifications.sendEmail"/>
+						</node>
+						<node label="公共主页类接口">
+							<node label="pages.isFan"/>
+						</node>
+						<node label="支付类接口">
+							<node label="pay.isCompleted"/>
+							<node label="pay.regOrder"/>
+							<node label="pay4Test.isCompleted"/>
+							<node label="pay4Test.regOrder"/>
+						</node>
+						<node label="用户信息类接口">
+							<node label="users.getInfo"/>
+							<node label="users.getLoggedInUser"/>
+							<node label="users.hasAppPermission"/>
+							<node label="users.isAppUser"/>
+						</node>
+					</node>
+					<node label="高级API">
+						<node label="状态类接口">
+							<node label="status.gets"/>
+							<node label="status.set"/>
+							<node label="status.get"/>
+							<node label="status.getComment"/>
+						</node>
+						<node label="相册类接口">
+							<node label="photos.createAlbum"/>
+							<node label="photos.getAlbums"/>
+							<node label="photos.upload"/>
+							<node label="photos.get"/>
+							<node label="photos.getComments"/>
+							<node label="photos.addComment"/>
+						</node>
+						<node label="日志类接口">
+							<node label="blog.addBlog"/>
+							<node label="blog.gets"/>
+							<node label="blog.get"/>
+							<node label="blog.getComments"/>
+							<node label="blog.addComment"/>
+						</node>
+					</node>
+				</fx:XMLList>
+			</mx:XMLListCollection>
+		</mx:Tree>
+		<s:Panel title="测试接口" x="306" y="43" width="632" height="211">
+			<mx:Form id="apiForm" width="630" height="178">
+			</mx:Form>
+		</s:Panel>
+		<s:Panel title="测试结果" width="632" height="276" x="306" y="272">
+			<s:TextArea id="apiResult" width="630" height="243"/>
+		</s:Panel>
+		
+	</s:Panel>
+	<fx:Script>
+		<![CDATA[
+			import com.maccherone.json.JSON;
+			import com.renren.graph.RenRen;
+			import com.renren.graph.data.RenRenSession;
+			import com.renren.graph.event.RenRenEvent;
+			
+			import mx.containers.FormHeading;
+			import mx.containers.FormItem;
+			import mx.controls.Label;
+			import mx.controls.TextInput;
+			
+			private var methodParamsMap:Dictionary = new Dictionary();
+			
+			private var renRen:RenRen;
+			
+			private var method:Object;
+			
+			private var fileReference:FileReference;
+			
+			private function init():void {
+				renRen = new RenRen();
+				
+				renRen.initAPI(new RenRenSession());
+				
+				methodParamsMap["admin.getAllocation"] = {
+					name:"admin_getAllocation", 
+					params:[]
+				};
+				
+				methodParamsMap["friends.areFriends"] = {
+					name:"friends_areFriends", 
+					params:[
+						{name:"uids1", optional:false, description:"第一组用户的ID", value:""},
+						{name:"uids2", optional:false, description:"第二组用户的ID", value:""}
+					]
+				};
+				methodParamsMap["friends.get"] = {
+					name:"friends_get", 
+					params:[
+						{name:"page", optional:true, description:"分页，默认为1", value:""},
+						{name:"count", optional:true, description:"返回每页个数，默认为500", value:""}
+					]
+				};
+				methodParamsMap["friends.getFriends"] = {
+					name:"friends_getFriends", 
+					params:[
+						{name:"page", optional:true, description:"分页，默认为1", value:""},
+						{name:"count", optional:true, description:"返回每页个数，默认为500", value:""}
+					]
+				};
+				methodParamsMap["friends.getAppFriends"] = {
+					name:"friends_getAppFriends", 
+					params:[
+						{name:"fields", optional:true, description:"返回的字段列表", value:""}
+					]
+				};
+				
+				methodParamsMap["invitations.createLink"] = {
+					name:"invitations_createLink", 
+					params:[
+						{name:"domain", optional:true, description:"获取邀请链接地址的域名属性", value:""}
+					]
+				};
+				methodParamsMap["invitations.getInfo"] = {
+					name:"invitations_getInfo", 
+					params:[
+						{name:"invitee_id", optional:true, description:"被邀请者的用户id", value:""},
+						{name:"begin_time", optional:true, description:"查询起始时间", value:""},
+						{name:"end_time", optional:true, description:"查询结束时间", value:""}
+					]
+				};
+				
+				methodParamsMap["notifications.send"] = {
+					name:"notifications_send", 
+					params:[
+						{name:"to_ids", optional:false, description:"用户id的列表", value:""},
+						{name:"notification", optional:false, description:"", value:""}
+					]
+				};
+				methodParamsMap["notifications.sendEmail"] = {
+					name:"notifications_sendEmail", 
+					params:[
+						{name:"template_id", optional:true, description:"邮件模板的ID", value:""},
+						{name:"recipients", optional:true, description:"收件人的UID", value:""},
+						{name:"template_data", optional:true, description:'如：{"who":"234234","static_uid":"23423423"}', value:""}
+					]
+				};
+				
+				methodParamsMap["pages.isFan"] = {
+					name:"pages_isFan", 
+					params:[
+						{name:"page_id", optional:true, description:"Page的ID", value:""},
+					]
+				};
+				
+				methodParamsMap["pay.isCompleted"] = {
+					name:"pay_isCompleted", 
+					params:[
+						{name:"order_id", optional:false, description:"用户消费校内豆订单号", value:""},
+					]
+				};
+				methodParamsMap["pay.regOrder"] = {
+					name:"pay_regOrder", 
+					params:[
+						{name:"page_id", optional:false, description:"用户消费校内豆订单号", value:""},
+						{name:"amount", optional:false, description:"校内豆消费数额", value:""},
+						{name:"desc", optional:false, description:"用户使用校内豆购买的虚拟物品的名称", value:""},
+						{name:"type", optional:true, description:"0代表WEB支付订单，1代表WAP支付订单，默认值为0", value:""},
+					]
+				};
+				methodParamsMap["pay4Test.isCompleted"] = {
+					name:"pay4Test_isCompleted", 
+					params:[
+						{name:"order_id", optional:false, description:"用户消费校内豆订单号", value:""},
+					]
+				};
+				methodParamsMap["pay4Test.regOrder"] = {
+					name:"pay4Test_regOrder", 
+					params:[
+						{name:"page_id", optional:false, description:"用户消费校内豆订单号", value:""},
+						{name:"amount", optional:false, description:"校内豆消费数额", value:""},
+						{name:"desc", optional:false, description:"用户使用校内豆购买的虚拟物品的名称", value:""},
+						{name:"type", optional:true, description:"0代表WEB支付订单，1代表WAP支付订单，默认值为0", value:""},
+					]
+				};
+				
+				methodParamsMap["users.getInfo"] = {
+					name:"users_getInfo", 
+					params:[
+						{name:"uids", optional:true, description:"用户的id", value:""},
+						{name:"fields", optional:true, description:"返回字段", value:""}
+					]
+				};
+				methodParamsMap["users.getLoggedInUser"] = {
+					name:"users_getLoggedInUser", 
+					params:[]
+				};
+				methodParamsMap["users.hasAppPermission"] = {
+					name:"users_hasAppPermission", 
+					params:[
+						{name:"ext_perm", optional:true, description:"用户可操作的扩展授权，例如email", value:""},
+						{name:"uids", optional:true, description:"用户ID", value:""}
+					]
+				};
+				methodParamsMap["users.isAppUser"] = {
+					name:"users_isAppUser", 
+					params:[
+						{name:"uids", optional:true, description:"用户的id", value:""},
+					]
+				};
+				
+				
+				methodParamsMap["status.gets"] = {
+					name:"status_gets", 
+					params:[
+						{name:"uids", optional:true, description:"状态信息所属用户id，不指定则根据sessionKey判断为当前用户", value:""},
+						{name:"page", optional:true, description:"支持分页，指定页号，页号从1开始。缺省返回第一页数据。", value:""},
+						{name:"count", optional:true, description:"支持分页，指定每页记录数，缺省为每页30条记录", value:""}
+					]
+				};
+				methodParamsMap["status.set"] = {
+					name:"status_set", 
+					params:[
+						{name:"status", optional:false, description:"用户更新的状态信息，最多140个字符", value:""},
+						{name:"forward_id", optional:true, description:"被转发的状态id", value:""},
+						{name:"forward_owner", optional:true, description:"被转发的状态所有者的id", value:""}
+					]
+				};
+				methodParamsMap["status.get"] = {
+					name:"status_get", 
+					params:[
+						{name:"status_id", optional:false, description:"状态的id", value:""},
+						{name:"owner_id", optional:true, description:"状态信息所属用户id，不指定则根据sessionKey判断为当前用户", value:""}
+					]
+				};
+				methodParamsMap["status.getComment"] = {
+					name:"status_getComment", 
+					params:[
+						{name:"status_id", optional:false, description:"状态的id", value:""},
+						{name:"owner_id", optional:false, description:"状态信息所属用户id", value:""},
+						{name:"page", optional:true, description:"支持分页，指定页号，页号从1开始。缺省返回第一页数据。", value:""},
+						{name:"count", optional:true, description:"支持分页，指定每页记录数，缺省为每页10条记录。", value:""},
+						{name:"order", optional:true, description:"获取留言的排序规则，0表示升序(最旧到新)，1表示降序(最新到旧)，默认为0", value:""}
+					]
+				};
+				
+				methodParamsMap["photos.createAlbum"] = {
+					name:"photos_createAlbum", 
+					params:[
+						{name:"name", optional:false, description:"相册的名字", value:""},
+						{name:"location", optional:true, description:"相册的地点", value:""},
+						{name:"description", optional:true, description:"相册的描述", value:""},
+						{name:"visible", optional:true, description:"相册的隐私设置. owner（自己）、friends（好友）、 networks（网络）、everyone(所有人)。99(所有人),1(好友), 3(同网络人), -1(仅自己可见) ", value:""},
+						{name:"password", optional:true, description:"相册的密码，支持字母，数字，符号，限16个字符", value:""}
+					]
+				};
+				methodParamsMap["photos.getAlbums"] = {
+					name:"photos_getAlbums", 
+					params:[
+						{name:"uid", optional:false, description:"相册所有者的用户ID", value:""},
+						{name:"page", optional:true, description:"分页的页数，默认值为1", value:""},
+						{name:"count", optional:true, description:"分页后每页的个数，默认值为10", value:""},
+						{name:"aids", optional:true, description:"多个相册的ID，以逗号分隔，最多支持10个数据", value:""}
+					]
+				};
+				
+				methodParamsMap["photos.upload"] = {
+					name:"photos_upload", 
+					params:[
+						{name:"upload", optional:false, description:"文件的数据。", value:"", isFile:true},
+						{name:"caption", optional:true, description:"照片的描述信息", value:""},
+						{name:"aid", optional:true, description:"相册的ID，如果指定此参数，将会传到指定相册，默认传到手机相册。", value:""},
+						{name:"source_link", optional:true, description:"新鲜事中来源信息链接。该参数为JSON格式", value:""}
+					]
+				};
+				methodParamsMap["photos.get"] = {
+					name:"photos_get", 
+					params:[
+						{name:"uid", optional:false, description:"照片所有者的用户ID或公共主页的ID", value:""},
+						{name:"aid", optional:true, description:"相册的id。aid和pids至少传递一个", value:""},
+						{name:"password", optional:true, description:"加密相册的密码。如果相册为加密相册，传递此参数", value:""},
+						{name:"page", optional:true, description:"页码，默认值为1，必须大于0，无上限", value:""},
+						{name:"count", optional:true, description:"每页的容量，默认值为10，必须大于0，无上限", value:""},
+						{name:"pids", optional:true, description:"照片id串，以分','割，最多20个。aid和pids至少传递一个，传递pids则无需传递page和count参数", value:""}
+					]
+				};
+				methodParamsMap["photos.getComments"] = {
+					name:"photos_getComments", 
+					params:[
+						{name:"uid", optional:false, description:"照片或相册所有者的用户ID", value:""},
+						{name:"aid", optional:true, description:"相册的id。aid和pid至少传递一个", value:""},
+						{name:"pid", optional:true, description:"照片id。aid和pid至少传递一个", value:""},
+						{name:"page", optional:true, description:"支持分页，缺省值为1（第一页）", value:""},
+						{name:"count", optional:true, description:"每页的数量，缺省值为10", value:""}
+					]
+				};
+				methodParamsMap["photos.addComment"] = {
+					name:"photos_addComment", 
+					params:[
+						{name:"uid", optional:false, description:"照片或相册所有者的用户ID", value:""},
+						{name:"content", optional:false, description:"评论的内容，最多140字", value:""},
+						{name:"aid", optional:true, description:"相册的id。aid和pid至少传递一个", value:""},
+						{name:"pid", optional:true, description:"照片id。aid和pid至少传递一个", value:""},
+						{name:"rid", optional:true, description:"评论的用户id，如果想对评论中的评论进行二级回复需要传递此参数", value:""},
+						{name:"type", optional:true, description:"评论的类型，是否为悄悄话，1表示悄悄话，0表示非悄悄话，默认为0", value:""}
+					]
+				};
+				
+				methodParamsMap["blog.addBlog"] = {
+					name:"blog_addBlog", 
+					params:[
+						{name:"title", optional:false, description:"日志的标题", value:""},
+						{name:"content", optional:false, description:"日志的内容", value:""},
+						{name:"visable", optional:true, description:"日志的隐私设置，可用值有99(所有人可见)1(仅好友可见)4(需要密码)-1(仅自己可见),错传或没传,默认为99", value:""},
+						{name:"password", optional:true, description:"用户设置的密码", value:""}
+					]
+				};
+				methodParamsMap["blog.gets"] = {
+					name:"blog_gets", 
+					params:[
+						{name:"uid", optional:false, description:"用户的ID或公共主页的ID", value:""},
+						{name:"page", optional:true, description:"分页的页数，默认值为1", value:""},
+						{name:"count", optional:true, description:"每页显示的日志的数量, 缺省值为20", value:""}
+					]
+				};
+				methodParamsMap["blog.get"] = {
+					name:"blog_get", 
+					params:[
+						{name:"uid", optional:false, description:"日志所有者的ID或公共主页的ID", value:""},
+						{name:"comment", optional:true, description:"返回评论内容，最大值为50，默认值0", value:""},
+						{name:"password", optional:true, description:"日志的密码（当日志有密码时）", value:""}
+					]
+				};
+				methodParamsMap["blog.getComments"] = {
+					name:"blog_getComments", 
+					params:[
+						{name:"id", optional:false, description:"日志id", value:""},
+						{name:"uid", optional:false, description:"用户的ID或公共主页的ID", value:""},
+						{name:"page", optional:true, description:"分页的页数，默认值为1", value:""},
+						{name:"count", optional:true, description:"默认值为20, 最大值为50, 每页所包含的评论数", value:""},
+						{name:"order", optional:true, description:"排序方式。1：代表逆序；0：正序。默认值为0", value:""}
+					]
+				};
+				methodParamsMap["blog.addComment"] = {
+					name:"blog_addComment", 
+					params:[
+						{name:"id", optional:false, description:"日志ID", value:""},
+						{name:"content", optional:false, description:"评论的内容", value:""},
+						{name:"uid", optional:false, description:"用户的ID或公共主页的ID", value:""},
+						{name:"rid", optional:true, description:"用于二级回复，被回复的人的用户ID", value:""},
+						{name:"type", optional:true, description:"是否为悄悄话，1表示悄悄话，0表示公开评论", value:""},
+					]
+				};
+			}
+			
+			private function auth(event:Event):void {
+				renRen.addEventListener(RenRenEvent.AUTH_SUCCESS, onAuthSuccess);
+				renRen.addEventListener(RenRenEvent.AUTH_FAIL, onAuthFail);
+				var scopeArray:Array = [
+					"read_user_blog",
+					"read_user_checkin ",
+					"read_user_feed ",
+					"read_user_guestbook",
+					"read_user_invitation ",
+					"read_user_like_history ",
+					"read_user_message ",
+					"read_user_notification",
+					"read_user_photo",
+					"read_user_status ",
+					"read_user_album ",
+					"read_user_comment",
+					"publish_blog ",
+					"publish_checkin",
+					"publish_feed ",
+					"write_guestbook",
+					"send_invitation",
+					"send_message",
+					"photo_upload",
+					"status_update ",
+					"create_album",
+					"publish_comment"
+				];
+				var scope:String = scopeArray.join(",");
+				renRen.auth(scope);
+			}
+			
+			private function onAuthSuccess(event:RenRenEvent):void {
+				authButton.label = "授权成功";
+				authButton.enabled = false;
+				print(event);
+			}
+			
+			private function onAuthFail(event:RenRenEvent):void {
+				print(event);
+			}
+			
+			private function handleChangeMethod(event:Event):void {
+				var methodKey:String = event.currentTarget.selectedItem.@label;
+				if(methodParamsMap[methodKey] == null) {
+					return;
+				}
+				method = methodParamsMap[methodKey];
+				refreshApiForm()
+			}
+			
+			private function refreshApiForm():void {
+				//清除所有子节点
+				apiForm.removeAllChildren();
+				//添加head，方法名
+				var head:FormHeading = new FormHeading();
+				head.label = method.name;
+				apiForm.addChild(head);
+				//添加item，方法参数列表
+				for(var i:int = 0; i < method.params.length; i++) {
+					var item:FormItem = new FormItem();
+					item.label = method.params[i].name;
+					item.required = !method.params[i].optional;
+					if(method.params[i].isFile == null) {
+						var input:TextInput = new TextInput();
+						input.id = method.params[i].name;
+						input.addEventListener(Event.CHANGE, handleApiFormItemChange);
+						item.addChild(input);
+					} else {
+						var fileButton:Button = new Button();
+						fileButton.label = "浏览文件";
+						fileButton.addEventListener(MouseEvent.CLICK, browseFile);
+						item.addChild(fileButton);
+					}
+					var desc:Label = new Label();
+					desc.text = method.params[i].description;
+					item.addChild(desc);
+					apiForm.addChild(item);
+				}
+				//添加提交按钮
+				var submit:FormItem = new FormItem();
+				var button:Button = new Button();
+				button.label = "测试接口";
+				button.addEventListener(MouseEvent.CLICK, handleApiFormSubmit);
+				submit.addChild(button);
+				apiForm.addChild(submit);
+			}
+			
+			private function handleApiFormItemChange(event:Event):void {
+				var input:TextInput = event.target as TextInput;
+				var params:Array = method.params;
+				for(var i:int = 0; i < params.length; i++) {
+					if(params[i].name == input.id) {
+						params[i]["value"] = input.text;
+					}
+				}
+			}
+			
+			private function browseFile(event:Event):void {
+				fileReference = new FileReference();
+				fileReference.addEventListener(Event.SELECT, handleSelectFile);
+				fileReference.browse();
+
+			}
+			
+			private function handleSelectFile(event:Event):void {
+				var params:Array = method.params;
+				for(var i:int = 0; i < params.length; i++) {
+					if(params[i].isFile != null) {
+						params[i]["value"] = fileReference;
+					}
+				}
+			}
+			
+			private function handleApiFormSubmit(event:Event):void {
+				if(method.name == "admin_getAllocation") {
+					renRen.addEventListener(RenRenEvent.ADMIN_GET_ALLOCATION_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.ADMIN_GET_ALLOCATION_FAIL, print);
+					renRen.admin_getAllocation();
+				}
+				if(method.name == "friends_areFriends") {
+					renRen.addEventListener(RenRenEvent.FRIENDS_ARE_FRIENDS_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.FRIENDS_ARE_FRIENDS_FAIL, print);
+					renRen.friends_areFriends(method.params[0].value, method.params[1].value);
+				}
+				if(method.name == "friends_get") {
+					renRen.addEventListener(RenRenEvent.FRIENDS_GET_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.FRIENDS_GET_FAIL, print);
+					renRen.friends_get(method.params[0].value, method.params[1].value);
+				}
+				if(method.name == "friends_getFriends") {
+					renRen.addEventListener(RenRenEvent.FRIENDS_GET_FRIENDS_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.FRIENDS_GET_FRIENDS_FAIL, print);
+					renRen.friends_getFriends(method.params[0].value, method.params[1].value);
+				}
+				if(method.name == "friends_getAppFriends") {
+					renRen.addEventListener(RenRenEvent.FRIENDS_GET_APP_FRIENDS_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.FRIENDS_GET_APP_FRIENDS_FAIL, print);
+					renRen.friends_getAppFriends(method.params[0].value);
+				}
+				
+				if(method.name == "invitations_createLink") {
+					renRen.addEventListener(RenRenEvent.INVITATIONS_CREATE_LINK_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.INVITATIONS_CREATE_LINK_FAIL, print);
+					renRen.invitations_createLink(method.params[0].value);
+				}
+				if(method.name == "invitations_getInfo") {
+					renRen.addEventListener(RenRenEvent.INVITATIONS_GET_INFO_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.INVITATIONS_GET_INFO_FAIL, print);
+					renRen.invitations_getInfo(method.params[0].value, method.params[1].value, method.params[2].value);
+				}
+				
+				if(method.name == "notifications_send") {
+					renRen.addEventListener(RenRenEvent.NOTIFICATIONS_SEND_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.NOTIFICATIONS_SEND_FAIL, print);
+					renRen.notifications_send(method.params[0].value, method.params[1].value);
+				}
+				if(method.name == "notifications_sendEmail") {
+					renRen.addEventListener(RenRenEvent.NOTIFICATIONS_SEND_EMAIL_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.NOTIFICATIONS_SEND_EMAIL_FAIL, print);
+					renRen.notifications_sendEmail(method.params[0].value, method.params[1].value, method.params[2].value);
+				}
+				
+				if(method.name == "pages_isFan") {
+					renRen.addEventListener(RenRenEvent.PAGES_IS_FAN_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PAGES_IS_FAN_FAIL, print);
+					renRen.pages_isFan(method.params[0].value);
+				}
+				
+				if(method.name == "pay_isCompleted") {
+					renRen.addEventListener(RenRenEvent.PAY_IS_COMPLETED_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PAY_IS_COMPLETED_FAIL, print);
+					renRen.pay_isCompleted(method.params[0].value);
+				}
+				if(method.name == "pay_regOrder") {
+					renRen.addEventListener(RenRenEvent.PAY_REG_ORDER_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PAY_REG_ORDER_FAIL, print);
+					renRen.pay_regOrder(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value);
+				}
+				if(method.name == "pay4Test_isCompleted") {
+					renRen.addEventListener(RenRenEvent.PAY4TEST_IS_COMPLETED_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PAY4TEST_IS_COMPLETED_FAIL, print);
+					renRen.pay4Test_isCompleted(method.params[0].value);
+				}
+				if(method.name == "pay4Test_regOrder") {
+					renRen.addEventListener(RenRenEvent.PAY4TEST_REG_ORDER_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PAY4TEST_REG_ORDER_FAIL, print);
+					renRen.pay4Test_regOrder(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value);
+				}
+				
+				if(method.name == "users_getInfo") {
+					renRen.addEventListener(RenRenEvent.USERS_GET_INFO_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.USERS_GET_INFO_FAIL, print);
+					renRen.users_getInfo(method.params[0].value, method.params[1].value);
+				}
+				if(method.name == "users_getLoggedInUser") {
+					renRen.addEventListener(RenRenEvent.USERS_GET_LOGGED_IN_USER_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.USERS_GET_LOGGED_IN_USER_FAIL, print);
+					renRen.users_getLoggedInUser();
+				}
+				if(method.name == "users_hasAppPermission") {
+					renRen.addEventListener(RenRenEvent.USERS_HAS_APP_PERMISSION_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.USERS_HAS_APP_PERMISSION_FAIL, print);
+					renRen.users_hasAppPermission(method.params[0].value, method.params[1].value);
+				}
+				if(method.name == "users_isAppUser") {
+					renRen.addEventListener(RenRenEvent.USERS_IS_APP_USER_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.USERS_IS_APP_USER_FAIL, print);
+					renRen.users_isAppUser(method.params[0].value);
+				}
+				
+				if(method.name == "status_gets") {
+					renRen.addEventListener(RenRenEvent.STATUS_GETS_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.STATUS_GETS_FAIL, print);
+					renRen.status_gets(method.params[0].value, method.params[1].value, method.params[2].value);
+				}
+				if(method.name == "status_set") {
+					renRen.addEventListener(RenRenEvent.STATUS_SET_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.STATUS_SET_FAIL, print);
+					renRen.status_set(method.params[0].value, method.params[1].value, method.params[2].value);
+				}
+				if(method.name == "status_get") {
+					renRen.addEventListener(RenRenEvent.STATUS_GET_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.STATUS_GET_FAIL, print);
+					renRen.status_get(method.params[0].value, method.params[1].value);
+				}
+				if(method.name == "status_getComment") {
+					renRen.addEventListener(RenRenEvent.STATUS_GET_COMMENT_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.STATUS_GET_COMMENT_FAIL, print);
+					renRen.status_getComment(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value, method.params[4].value);
+				}
+				
+				if(method.name == "photos_createAlbum") {
+					renRen.addEventListener(RenRenEvent.PHOTOS_CREATE_ALBUM_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PHOTOS_CREATE_ALBUM_FAIL, print);
+					renRen.photos_createAlbum(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value, method.params[4].value);
+				}
+				if(method.name == "photos_getAlbums") {
+					renRen.addEventListener(RenRenEvent.PHOTOS_GET_ALBUMS_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PHOTOS_GET_ALBUMS_FAIL, print);
+					renRen.photos_getAlbums(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value);
+				}
+				if(method.name == "photos_upload") {
+					renRen.addEventListener(RenRenEvent.PHOTOS_UPLOAD_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PHOTOS_UPLOAD_FAIL, print);
+					renRen.photos_upload(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value);
+				}
+				if(method.name == "photos_get") {
+					renRen.addEventListener(RenRenEvent.PHOTOS_GET_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PHOTOS_GET_FAIL, print);
+					renRen.photos_get(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value, method.params[4].value, method.params[5].value);
+				}
+				if(method.name == "photos_addComment") {
+					renRen.addEventListener(RenRenEvent.PHOTOS_ADD_COMMENT_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PHOTOS_ADD_COMMENT_FAIL, print);
+					renRen.photos_addComment(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value, method.params[4].value, method.params[5].value);
+				}
+				if(method.name == "photos_getComments") {
+					renRen.addEventListener(RenRenEvent.PHOTOS_GET_COMMENTS_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.PHOTOS_GET_COMMENTS_FAIL, print);
+					renRen.photos_getComments(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value, method.params[4].value);
+				}
+				
+				if(method.name == "blog_addBlog") {
+					renRen.addEventListener(RenRenEvent.BLOG_ADD_BLOG_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.BLOG_ADD_BLOG_FAIL, print);
+					renRen.blog_addBlog(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value);
+				}
+				if(method.name == "blog_gets") {
+					renRen.addEventListener(RenRenEvent.BLOG_GETS_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.BLOG_GETS_FAIL, print);
+					renRen.blog_gets(method.params[0].value, method.params[1].value, method.params[2].value);
+				}
+				if(method.name == "blog_get") {
+					renRen.addEventListener(RenRenEvent.BLOG_GET_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.BLOG_GET_FAIL, print);
+					renRen.blog_get(method.params[0].value, method.params[1].value, method.params[2].value);
+				}
+				if(method.name == "blog_getComments") {
+					renRen.addEventListener(RenRenEvent.BLOG_GET_COMMENTS_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.BLOG_GET_COMMENTS_FAIL, print);
+					renRen.blog_getComments(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value, method.params[4].value);
+				}
+				if(method.name == "blog_addComment") {
+					renRen.addEventListener(RenRenEvent.BLOG_ADD_COMMENT_SUCCESS, print);
+					renRen.addEventListener(RenRenEvent.BLOG_ADD_COMMENT_FAIL, print);
+					renRen.blog_addComment(method.params[0].value, method.params[1].value, method.params[2].value, method.params[3].value, method.params[4].value);
+				}
+				
+			}
+			
+			private function print(event:RenRenEvent):void {
+				var data:Object = event.data;
+				apiResult.text = JSON.encode(data, true);
+			}
+		]]>
+	</fx:Script>
+</s:Application>

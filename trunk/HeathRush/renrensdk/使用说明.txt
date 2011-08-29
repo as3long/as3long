@@ -1,0 +1,32 @@
+不知道大家有没有对OAuth验证授权的流程感到疑惑，有没有对API的签名算法产生误解。如果您是一位ActionScript程序员，那么我要告诉您一个好消息，人人网开放平台开始提供官方的AS3 SDK了，这套SDK封装了人人网开放平台的OAuth2.0授权和REST API。您的开发将会通过SDK得到简化，您之前所遇到的问题，都能从SDK的代码中得到参考。
+
+为了广大的开发者更容易上手使用AS3 SDK在人人网开放平台上开发应用，在此给大家详细介绍使用AS3 SDK的开发流程。
+1、	创建自己的应用
+使用微博帐号登录http://dev.renren.com/，点击“我的应用”，右上角有一个醒目的按钮“创建应用”。填写应用名称，接受人人网开放平台的协议之后，点击保存设置就完成了创建的过程。创建完毕后您可以编辑应用的属性，这时候您的App还处于开发阶段，并没有通过审核，但是您可以使用正常使用人人OAuth 2.0和REST API。
+
+2、	获得AS3 SDK的代码包
+AS3 SDK的代码包托管在https://bitbucket.org/上，您可以在https://bitbucket.org/renren_platform/找到人人开放平台所支持的所有SDK
+ 
+3、	创建Flash工程并导入SDK
+您可以使用Flash IDE或者Flash Builder来进行开发，首先通过向导创建一个工程，然后把SDK中的src目录下的内容复制到工程的源码包中即完成了导入的操作，在使用之前您需要修改AppConfig.as文件，修改里面的两个常量。
+API_KEY：需要修改为您刚刚创建的App的API Key，您可以在“我的应用”中找到App对应的API Key。
+REDIRECT_URI：您需要有自己的服务器来完成OAuth 2.0的授权（我们正在考虑一种不需要服务器的实现方案，尽请期待），把SDK包中proxy目录下的accessTokenProxy.html，swfobject.
+js和AccessTokenProxy.swf文件放到在您域下的某个位置的同一级目录下，并把REDIRECT_URI修改为能访问到accessTokenProxy.html的URI。在这里要注意编辑应用的属性，因为OAuth 2.0会检查REDIRECT_URI 和应用属性中的域是否一致。REDIRECT_URI的验证方式及相关的应用配置请参考文档http://wiki.dev.renren.com/wiki/%E2%80%9Credirect_uri%E2%80%9D%E9%AA%8C%E8%AF%81%E6%96%B9%E5%BC%8F%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9A%84%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE。AccessTokenProxy.swf的源代码在renren.graph.proxy.AccessTokenProxy.as，它使用了AS3内建的LocalConnection机制来传递access_token。
+
+4、	使用SDK进行开发。
+SDK的代码大致分为三层结构
+第一层（最底层）是RenRenRequest，它对验证授权和调用API的网络操作进行了封装，这一层的任务包括管理网络连接资源，处理IO和安全异常，对文件上传也提供了支持。
+第二层是RenRenAPI和RenRenAuth，作用分别为封装验证授权和调用REST API，涉及到的网络通信，都是通过前面第一层的RenRenRequest来完成的。
+  简述一下这两个类的关系：
+  首先，你可以单独的使用RenRenAuth或者RenRenAPI
+  其次，你也可以配合使用RenRenAuth或者RenRenAPI，联系二者的纽带是RenRenSession（包含了access_token和session_key等验证信息）， RenRenAPI的初始化需要一个RenRenSession，而完成RenRenAuth的验证流程可以产生一个RenRenSession。
+第三层是RenRen，其主要功能包括：
+  封装了人人网开放平台的OAuth2.0授权
+  封装了人人网开放平台的REST API
+  不仅可以提供回调获得API调用结果，还可以采用事件处理的机制
+  提供通用接口以满足线上接口更新后SDK未封装的情况
+一般情况下，当一个动作（验证授权或API调用）完成，会产生一个RenRenEvent事件，具体事件类型请参照函数说明文档。
+
+具体的使用方法可以参见演示App和Asdoc文档，演示App在http://dev.renren.com/tool/assdk
+
+Ps:如果您在使用的过程中遇到问题，请联系liang.cao#opi-corp.com，我们一定会第一时间帮您解决开发中的问题。
