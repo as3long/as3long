@@ -12,13 +12,14 @@ package com.rush360.view
 	 * ...
 	 * @author 360rush
 	 */
-	public class PicView extends Sprite 
+	public class PicView2 extends Sprite 
 	{
 		private var _url:String;
 		private var _loader:Loader;
 		public var imageObj:DisplayObject;
-		public function PicView() 
+		public function PicView2() 
 		{
+			
 		}
 		
 		public function set url(picUrl:String):void
@@ -41,16 +42,7 @@ package com.rush360.view
 			var _width:Number = imageObj.width;
 			var _height:Number = imageObj.height;
 			addChild(imageObj);
-			if (_width / 650 > _height / 500)
-			{
-				imageObj.scaleX = imageObj.scaleY = 650 / _width;
-			}
-			else
-			{
-				imageObj.scaleX = imageObj.scaleY = 500 / _height;
-				
-			}
-			imageObj.y = 250 - imageObj.height / 2;
+			
 		}
 		
 	}
