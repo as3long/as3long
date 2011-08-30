@@ -2,7 +2,6 @@ package
 {
 	import com.rush360.interfac.Icar;
 	import com.rush360.Manager.AppBean;
-	import com.rush360.Manager.InjectManager;
 	import com.rush360.Manager.XmlManager;
 	import com.rush360.People;
 	import com.rush360.RedCar;
@@ -10,6 +9,7 @@ package
 	import flash.events.Event;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.sampler.NewObjectSample;
 	import flash.text.TextField;
 
 	/**
@@ -37,8 +37,8 @@ package
 		
 		private function load_ok(e:Event):void 
 		{
-			var appBean:AppBean = new AppBean(XmlManager.instance.urlLoader.data);
-			var people:People = People(appBean.getBean("people"));
+			var appBean:AppBean = new AppBean(stage);
+			var people:People= appBean.getBean();
 			people.usecar();
 			people.eatApple();
 		}
