@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<bean class="com.rush360.People" id="people">
+	<shuxing type="Icar" ref="car"></shuxing>
+	<shuxing type="Iapple" ref="apple"></shuxing>
+</bean>
+<bean class="com.rush360.RedCar" id="car"></bean>
+<bean class="com.rush360.Apple" id="apple"></bean>
