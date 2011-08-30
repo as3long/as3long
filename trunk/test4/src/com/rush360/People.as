@@ -32,7 +32,7 @@ package com.rush360
 		
 		public function eatApple():void
 		{
-			trace(_apple.color);
+			trace(_apple.color());
 		}
 	}
 
