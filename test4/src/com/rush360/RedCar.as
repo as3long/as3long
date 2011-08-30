@@ -8,7 +8,7 @@ package com.rush360
 	public class RedCar implements Icar 
 	{
 		
-		public function RedCar(str:String) 
+		public function RedCar() 
 		{
 			
 		}
