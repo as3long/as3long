@@ -36,6 +36,11 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
 			
+			start();
+		}
+		
+		private function start():void
+		{
 			_mask = new Sprite();
 			_mask.graphics.beginFill(0xFF0000);
 			_mask.graphics.drawRect(0, 0, 200, 200);
@@ -58,11 +63,11 @@ package
 				picView.mouseEnabled = false;
 				picArr.push(picView);
 			}
-			stage.doubleClickEnabled = true;
+			//stage.doubleClickEnabled = true;
 			stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseEvent_mouseDown);
 			stage.addEventListener(MouseEvent.MOUSE_UP, mouseEvent_mouse_Up);
 			stage.addEventListener(Event.ENTER_FRAME, enter_frame);
-			stage.addEventListener(MouseEvent.DOUBLE_CLICK, double_click);
+			//stage.addEventListener(MouseEvent.DOUBLE_CLICK, double_click);
 			picArr[nowI].visible = true;
 			this.addChild(_spr);
 			_picView2 = new PicView2();
@@ -71,6 +76,7 @@ package
 			addChild(_picView2);
 			_picView2.mask = _mask;
 		}
+		
 		
 		private function double_click(e:MouseEvent):void 
 		{
@@ -169,8 +175,9 @@ package
 			}
 			_timer = nowTimer;
 			
-			
-			
+			_spr.visible = false;
+			_picView2.visible = false;
+			render2 = false;
 			
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseEvent_mouse_Move);
 			_pointX = e.target.mouseX;
