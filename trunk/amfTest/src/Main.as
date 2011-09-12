@@ -1,5 +1,7 @@
 package 
 {
+	import com.rush360.event.RushEvent;
+	import com.rush360.net.RushRemoting;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
@@ -20,8 +22,8 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			
-			addChild(new Test());
+			RushRemoting.i.baseUrl = "http://360rushgame.sinaapp.com/Amfphp/";
+			RushRemoting.i.gateway(RushEvent.TIME_GETTIME);
 		}
 		
 	}
