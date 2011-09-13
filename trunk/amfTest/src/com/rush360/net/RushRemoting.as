@@ -1,4 +1,4 @@
-package com.rush360.net 
+package com.rush360.net
 {
 	import com.rush360.event.RushEvent;
 	import flash.display.GraphicsSolidFill;
@@ -10,7 +10,7 @@ package com.rush360.net
 	 * ...
 	 * @author 360rush
 	 */
-	public class RushRemoting extends NetConnection 
+	public class RushRemoting extends NetConnection
 	{
 		/**
 		 * 单例
@@ -21,15 +21,16 @@ package com.rush360.net
 		 * AMFPHP的基础路径
 		 */
 		private var _baseUrl:String = "";
-		public function RushRemoting() 
+		
+		public function RushRemoting()
 		{
-			
+		
 		}
 		
 		/**
 		 * 获取AMFPHP的基础路径
 		 */
-		public function get baseUrl():String 
+		public function get baseUrl():String
 		{
 			return _baseUrl;
 		}
@@ -37,13 +38,13 @@ package com.rush360.net
 		/**
 		 * 设置AMDPHP的基础路径,设置完成已经开始连接
 		 */
-		public function set baseUrl(value:String):void 
+		public function set baseUrl(value:String):void
 		{
 			_baseUrl = value;
 			this.connect(_baseUrl);
 		}
 		
-		public function gateway(eventString:String,result:Function=null,faild:Function=null,...arg):void
+		public function gateway(eventString:String, result:Function = null, faild:Function = null, ... arg):void
 		{
 			if (faild == null)
 			{
@@ -66,9 +67,13 @@ package com.rush360.net
 		{
 			trace("连接成功");
 			trace(result);
+			var data:Date = new Date();
+			//trace(data.fullYear, data.month, data.date, data.day, data.hours, data.minutes, data.seconds);
+			//data.setTime(result);
+			//trace(data.fullYear, data.month, data.date, data.day, data.hours, data.minutes, data.seconds);
 		}
 		
-		override public function call(command:String, responder:Responder, ...rest):void 
+		override public function call(command:String, responder:Responder, ... rest):void
 		{
 			super.call(command, responder);
 		}
