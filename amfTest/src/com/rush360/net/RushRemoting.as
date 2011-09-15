@@ -5,6 +5,7 @@ package com.rush360.net
 	import flash.events.Event;
 	import flash.net.NetConnection;
 	import flash.net.Responder;
+	import flash.utils.describeType;
 	
 	/**
 	 * ...
@@ -67,7 +68,7 @@ package com.rush360.net
 		{
 			trace("连接成功");
 			trace(result);
-			var data:Date = new Date();
+			//var data:Date = new Date();
 			//trace(data.fullYear, data.month, data.date, data.day, data.hours, data.minutes, data.seconds);
 			//data.setTime(result);
 			//trace(data.fullYear, data.month, data.date, data.day, data.hours, data.minutes, data.seconds);
