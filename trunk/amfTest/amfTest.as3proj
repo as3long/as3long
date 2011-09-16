@@ -50,7 +50,7 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <element path="E:\swc\AsWing.swc" />
+    <element path="lib\AsWing.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
