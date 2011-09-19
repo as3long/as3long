@@ -1,6 +1,7 @@
 package com.rush360.v 
 {
 	import com.rush360.i.IView;
+	import flash.events.Event;
 	import org.aswing.border.EmptyBorder;
 	import org.aswing.BorderLayout;
 	import org.aswing.EmptyLayout;
@@ -17,15 +18,15 @@ package com.rush360.v
 	 * 登录视图
 	 * @author 360rush
 	 */
-	public class LoginView extends Sprite implements IView 
+	public class LoginView extends RushViewBase
 	{
 		private var loginFrame:JFrame;
 		private var nameLabel:JLabel;
 		private var pwdLabel:JLabel;
-		private var nameTextField:JTextField;
-		private var pwdTextField:JTextField;
+		public var nameTextField:JTextField;
+		public var pwdTextField:JTextField;
 		
-		private var  loginButton:JButton;
+		public var  loginButton:JButton;
 		
 		private var loginForm:Form;
 		
@@ -34,8 +35,9 @@ package com.rush360.v
 			init();
 		}
 		
-		private function init():void
+		override public function init():void 
 		{
+			super.init();
 			loginForm = new Form();
 			//loginForm.setBorder(new EmptyBorder(null, new Insets(2, 2, 2, 2)));
 			loginFrame = new JFrame(this, "登录");
@@ -55,8 +57,21 @@ package com.rush360.v
 			loginFrame.show();
 			loginFrame.setClosable(false);
 			loginFrame.setResizable(false);
-			loginFrame.setLocationXY(620,0);
+			loginFrame.setLocationXY(620, 0);
+			
+			//loginButton.addActionListener(login_click);
 		}
+		
+		private function login_click(e:Event):void 
+		{
+			
+		}
+		
+		public function setText(str:String):void
+		{
+			pwdTextField.setText(str);
+		}
+		
 	}
 
 }

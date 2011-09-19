@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'2011-9-15'</value>
+      <value>'2011-9-19'</value>
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
@@ -24,7 +24,7 @@
       <path-element>d:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>E:\swc\AsWing.swc</path-element>
+      <path-element>D:\rush360\as3long\amfTest\lib\AsWing.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

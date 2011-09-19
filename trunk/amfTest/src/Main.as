@@ -1,11 +1,15 @@
 package
 {
+	import com.rush360.c.StartupCommand;
 	import com.rush360.event.RushEvent;
+	import com.rush360.manger.*;
 	import com.rush360.net.RushRemoting;
 	import com.rush360.v.LoginView;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import com.rush360.proxy.ObjectProxy;
+	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import org.aswing.ASColor;
 	import org.aswing.AsWingManager;
@@ -23,13 +27,11 @@ package
 	 * ...
 	 * @author 360rush
 	 */
-	public class Main extends Sprite
+	public class Main extends MovieClip
 	{
-		private var window:JWindow;
-		private var frame:JFrame;
-		private var label:JLabel;
-		private var button1:JButton;
-		private var button2:JButton;
+		private var rushObServer1:RushObServer1;
+		private var rushObServer2:RushObServer2;
+		public var loginView:LoginView;
 		public function Main():void
 		{
 			if (stage)
@@ -42,11 +44,15 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
-			
-			//Controller.getInstance().addCommand(StartupCommand);
-			//Controller.getInstance().executeCommand(StartupCommand, this);
 			AsWingManager.initAsStandard(this);
-			addChild(new LoginView());
+			loginView = new LoginView();
+			addChild(loginView);
+			rushObServer1 = new RushObServer1();
+			rushObServer2 = new RushObServer2();
+			RushObServerManger.i.addObServer(rushObServer1);
+			RushObServerManger.i.addObServer(rushObServer2);
+			Controller.getInstance().addCommand(StartupCommand);
+			Controller.getInstance().executeCommand(StartupCommand, this);
 		}
 	}
 
