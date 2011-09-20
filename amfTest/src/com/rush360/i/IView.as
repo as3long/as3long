@@ -1,5 +1,6 @@
 package com.rush360.i 
 {
+	import flash.display.DisplayObject;
 	
 	/**
 	 * ...
