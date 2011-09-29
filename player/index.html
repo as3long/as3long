@@ -1,0 +1,50 @@
+{include file="require_header.html"}
+
+
+{if $noticeCount}
+<nav id="message" style="display:none">
+	{foreach from=$notice item=d}
+    <article id="notice_{$d.id}">
+    <div class="delnotice">{if $d.isread ==0}<a href="javascript:void(0)" onClick="isreadnotice('{$d.id}','{spUrl c=blog a=readnotice id=$d.id}')">我知道了</a>{else}删除消息{/if}</div>
+        <div><div class="facearea">
+       		 <a href="{$url}/{$d.user.domain}" title="{$d.user.username}" target="_blank">
+       			 <img src="{avatar uid=$d.user.uid size=middle}" alt="{$d.tome.username}" align="absmiddle" class="face"/>
+       		 </a>
+        </div>
+           <p><a href="{$url}/{$d.user.domain}" title="{$d.user.username}" target="_blank">{$d.user.username}</a> {$d.title} - {$d.time|date_format:"%Y-%M-%d/%H:%M:%S"}</p>
+            <p class="info">{replay_preg msg=$d.info}  <a href="{notice_preg url=$d.location}">查看原文</a></p>
+       </div>
+    </article>
+   
+    {/foreach}
+    <div class="clear"></div>
+
+
+</nav>
+{/if}
+
+
+
+<article id="article">
+{if $user.flow <=15}
+<div class="box">您关注用户过少,{$yb.site_title}将推送您更多内容 :)</div>	
+{/if}
+<div id="feedArea">
+{include file="require_feeds.html" data=$blogs limits=4}
+</div>
+<!--<footer class="nav">{$pager}</footer> -->
+<div id="feedAjaxTool" page="2" max="10" area="feedArea" query="{spUrl c=main a=index ajaxload=true}" class="feedajax">
+<a href="javascript:void(0)" onclick="continueShow('feedAjaxTool')"><img src="tpl/image/hand.gif" class="loading"/>点击查看更多...</a>
+</div>   
+<script>feedToolBar('feedAjaxTool');</script>
+
+</article>
+
+
+
+
+<aside>
+   {include file="require_sider.html"}
+</aside>
+
+{include file="require_footer.html"}
