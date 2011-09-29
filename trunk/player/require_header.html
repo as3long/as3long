@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <title>{$title} {$yb.site_title} - {$yb.site_titlepre} - Power by 云边开源轻博</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="{$yb.author}" />
+    <meta name="description" content="{$yb.site_desc}" />
+    <meta name="keywords" content="{$yb.site_keyword}" />
+    <base href="{$url}/" />
+    <link rel="stylesheet" type="text/css" media="screen" href="tpl/image/css/anythink.css" />
+    <link href="tpl/image/css/imgZoom.css" rel="stylesheet" type="text/css">
+    <!--[if IE]><script src="tpl/js/html5.js"></script><![endif]-->
+	<script type="text/javascript" src="tpl/js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="tpl/js/dialog/dialog.js?skin=mac"></script>
+    <script type="text/javascript" src="tpl/js/dialog/dialogTools.js"></script>
+	<script type="text/javascript" src="tpl/js/imgZoom.min.js"></script>
+    <script type="text/javascript" src="tpl/js/global.js"></script>
+    {if $editor == yes} 
+    <script type="text/javascript" src="tpl/js/editor/xheditor.js"></script>
+    <script type="text/javascript" src="tpl/js/add.js"></script>
+    {/if}
+     {if $layout == yes} 
+      <script type="text/javascript" src="tpl/js/masonry.min.js"></script>
+      <link rel="stylesheet" type="text/css" media="screen" href="tpl/image/css/index_nologin.css" />
+    {/if}
+    {if $swfupload == yes} 
+    <script type="text/javascript" src="tpl/js/swfupload.js"></script>
+    <script type="text/javascript" src="tpl/js/multiupload.js"></script>
+    {/if}
+    {if $addcss == yes} <link rel="stylesheet" type="text/css" media="screen" href="tpl/image/css/add.css" />{/if}
+</head>
+
+<body>
+
+<div id="header_bg">
+<div id="footer_bg">
+<div id="wrap">
+
+
+<header id="header">
+	<nav id="logo"><a title="{$title}" href="{spUrl c=main a=index}">{$title}</a></nav>
+    <nav id="search"><input type="text" value="搜索标签" class="ipt"><input type="button" class="btn" value="" onClick="searchTag()"></nav>
+    <nav id="nav">
+	<a href="{spUrl c=main a=index}" {$index_curr}>首页</a>
+	<a href="{spUrl c=main a=recommend}" {$recomm_curr}>推荐</a>
+	<a href="{spUrl c=main a=discovery}" {$discov_curr}>发现</a>
+    <a href="{spUrl c=main a=now}" {$now_curr}>此刻</a>
+
+	</nav>
+    <nav id="tool">
+        {if $smarty.session.uid ==''}
+            <a href="javascript:void(0)" onClick="loginBox('{spUrl c=main a=login}')">登陆</a>
+            <a href="javascript:void(0)" onClick="regBox('{spUrl c=main a=reg}')">注册</a>
+        {else}
+      	  <a href="{goUserHome domain=$smarty.session.domain uid=$smarty.session.uid}" target="_blank" title="我的主页">{$smarty.session.username}</a> <a href="{spUrl c=user a=setting}">设置</a>
+          {if $smarty.session.admin ==1}<a href="{spUrl c=admin}">后台</a>{/if}
+          <a href="javascript:void(0)" onClick="logout('{spUrl c=main a=logout}')">退出</a>
+          
+        {/if}
+       	  <a href="{spUrl c=site a=about}">关于</a>
+    </nav>
+</header>
+<input type="hidden"  name="login_url" id="login_url" value="{spUrl c=main a=login}" />
+<input type="hidden"  name="reg_url" id="reg_url" value="{spUrl c=main a=reg}" />
+
+

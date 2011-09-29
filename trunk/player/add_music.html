@@ -1,0 +1,184 @@
+{include file="require_header.html" addcss=yes editor=yes titlepre="分享音乐 - "}
+<div class="content">
+<div>&nbsp;</div>
+
+<form action="{spUrl c=add a=post}" id="form1" method="post">
+  <div id="content">
+
+    <div id="main">
+  
+      <h2 id="title">发布音乐</h2>
+      <div id="pb-post-area">
+      
+      <div id="musicSElect">
+          <a href="javascript:void(0)" onclick="musicSelect('url')" style="float:left"><img src="tpl/image/add/network.png" width="104" height="33" /></a>
+          <div class="upload" id="upload_mp3"> <input type="file" size="1" name="filedata" ext="mp3|wma|mid" class="upBtn"/></div>
+          <div class="clear"></div>
+      </div>
+      
+      <div id="musicNotice"><a href="{spUrl c=site a=help}" target="_blank">！上传本地音乐或提交引用地址前请点击这里了解详情</a></div>
+     
+      
+      
+     <div id="musicFrom">
+          <input type="text"  id="musicurl" class="ipta"  value="引用地址"  onfocus="musicMouse(this)" onblur="musicMosout(this,'u')" >
+          <input type="text"  id="musicdesc" class="ipta"  value="介绍(选填)" onfocus="musicMouse(this)" onblur="musicMosout(this,'c')">
+          <input type="button" id="urlParseLoading" value="保存" onclick="saveMusicList($('#musicurl').val(),$('#musicdesc').val())">
+    </div> 
+    
+     <div id="localMusic"></div>
+     <div id="musicList">
+     {foreach $body.attr item=d}
+      <div class="list" img="{$d.img}" pid="{$d.pid}" type="{$d.type}">
+          {if $d.type =='local'} <img alt="" src="tpl/image/add/local.png"> {else}<img alt="" src="{$d.img}"> {/if}
+           <input type="text" value="{$d.desc}" name="musicList[{$d.pid}]">
+          <a onclick="musicDItem(this)" href="javascript:void(0)">移除</a>
+      </div>
+     {/foreach}
+   
+     
+        <div class="clear"></div>
+     </div>
+     
+     
+          {if is_array($attach)}
+            <div id="media_lib">
+          <h3 class="title">我的媒体库 <span>(您可以选用的媒体)</span> </h3>
+          <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" class="globox">
+              <tr>
+                <th width="30">ID</th>
+                <th>名称</th>
+                <th width="60">大小</th>
+                <th width="40">类型</th>
+                <th width="140">上传时间</th>
+                <th width="100">操作</th>
+              </tr>
+                {foreach from=$attach item=d}
+              <tr class="trg" id="attach_{$d.id}">
+                <td align="center">{$d.id}</td>
+                <td>{$d.blogdesc} </td>
+                <td align="center">{formatBytes size=$d.filesize}</td>
+                <td align="center">{$d.mime}</td>
+                <td align="center">{$d.time|date_format:"%Y/%m/%d %H:%M"}</td>
+                <td align="center"><a href="javascript:void(0)" onclick="{attach_insert file=$d.path name=$d.blogdesc id=$d.id}">选用</a> /
+                 <a href="javascript:void(0)" onclick="delAttach('{$d.id}')" class="mdiea_del">删除</a></td>
+              </tr>
+                {/foreach}
+            </table>
+           </div>
+           {/if}
+
+        
+        
+        <div>
+          <h3 class="title"> 标题 <span>(选填)</span> </h3>
+          <input type="text" name="pb-text-title" id="pb-text-title" class="pb-input-text" tabindex="1" value="{$blog.title}">
+        </div>
+        
+        <div>
+          <h3 class="title">内容 <span>(选填)</span></h3>
+          <span id="uploadpic"> 
+          <span id="upload_bar"> 
+           <div class="uploadBtn" id="upload_img"><span>上传图片</span><input type="file" size="1" name="filedata" ext="jpg,jpeg,gif,png" /></div> 
+          </span>
+        	  <span id="uploading" style="display:none">正在上传...</span> </span>
+          <textarea name="textarea" id="textarea" style="width:100%; height:200px">{$body.content}</textarea>
+          <input type="hidden" name="urlmusic" id="urlmusic"  />
+           </div>
+
+
+     
+      
+ 
+      </div>
+      <div id="pb-action-holder"> 
+          <a id="submit_music" class="blue-button">发布</a> 
+          <a id="preview" class="gray-button">预览</a> 
+          <a id="cancel" class="gray-button">取消</a> 
+       <span style="display:none;" id="pb-submiting-tip">正在保存...</span>
+      </div>
+    </div>
+    
+ 
+    <div id="aside">
+      <div class="aside-item" id="post-privacy-holder">
+        <select id="post-privacy-select" name="post-privacy-select">
+        <option value="1">所有人可见</option>
+         <option value="0">仅自己可见</option>
+         <option value="0">保存为草稿</option>
+        </select>
+      </div>
+      
+      <hr class="separator">
+
+      <div class="aside-item" id="post-tag-holder">
+        <div id="post-tag">
+          <ul class="clearfix" id="post-tag-list"><!--动态插入标签-->
+          {foreach from=$myTag item=d}
+          <li tag="{$d}">{$d}<a href="javascript:void(0)" onclick="remTags(this)">x</a></li>
+        {/foreach}
+          </ul>
+          <div id="post-tag-input-holder">
+            <input type="text" id="post-tag-input" class="pb-tag-tip" value="">
+          </div>
+        </div>
+      </div>
+      
+      <hr class="separator">
+      
+      <div class="aside-item" id="recommand-tag-holder">
+        <h4>常用标签</h4>
+        <ul class="clearfix" id="recommand-tag-list">
+        {foreach from=$myTagUsually item=d}
+          <li tag="{$d.title}"><a href="javascript:void(0)" onclick="tuiTag('{$d.title}',this)">{$d.title}</a></li>
+        {/foreach}
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <hr class="separator">
+      
+      <div class="aside-item pb-side-opt" id="top-post-holder">
+        <label> 
+        
+         {if $blog.top ==1}
+        <input type="checkbox" id="pb-top-post" name="pb-top-post" value="1" checked="checked">
+        {else}
+           <input type="checkbox" id="pb-top-post" name="pb-top-post" value="1">
+        {/if}
+        文章置顶
+        </label>
+        <p class="top-post-tip">多个置顶将按照时间排序</p>
+      </div>
+      
+      <div class="aside-item pb-side-opt" id="top-post-holder">
+        <label>
+        {if $blog.noreply ==1}
+        <input type="checkbox" id="pb-nowrite-post" name="pb-nowrite-post" value="1" checked="checked">禁止评论
+        {else}
+           <input type="checkbox" id="pb-nowrite-post" name="pb-nowrite-post" value="1">禁止评论
+        {/if}
+        </label>
+        <p class="top-post-tip">本条内容不允许评论</p>
+      </div>
+       <hr class="separator">
+      <!--
+        <div class="aside-item pb-side-opt" id="top-post-holder">
+         <label> <input name="pb-sync-to-qqweibo" type="checkbox" id="pb-sync-to-qqweibo" value="1">转发腾讯微薄</label>
+      </div>
+      
+        <div class="aside-item pb-side-opt" id="top-post-holder">
+         <label><input name="pb-sync-to-weibo" type="checkbox" id="pb-sync-to-weibo" value="1">转发新浪微薄</label>
+      </div>
+      -->
+      <input type="hidden" name="blog-types" id="blog-types" value="2" />
+      <input type="hidden" name="blog-open" id="blog-open" value="1" />
+      <input type="hidden" name="blog-tags" id="blog-tags" value="" />
+   
+      
+    </div>
+    <div class="clear"></div>
+  </div>
+</form>
+</div>
+
+{include file="require_footer.html"}
