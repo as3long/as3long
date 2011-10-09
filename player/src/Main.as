@@ -29,10 +29,15 @@ package
 			var parm:Object = root.loaderInfo.parameters;
 			var url:String = root.loaderInfo.parameters["url"];
 			var sname:String = root.loaderInfo.parameters["sname"];
-			_mainMc._mcSongName._txtName.text = sname + "___";
-			Trace360.myTrace(parm);
-			//url = "http://ohmyrock.net/wp-content/uploads/2011/06/Moves%20Like%20Jagger%20OHMYROCK.NET.mp3";
-			//sname = "这是一首歌";
+			//_mainMc._mcSongName._txtName.text = sname + "___";
+			//Trace360.myTrace(parm);
+			//trace(url);
+			if (url == null || url == "")
+			{
+				url = "http://ohmyrock.net/wp-content/uploads/2011/06/Moves%20Like%20Jagger%20OHMYROCK.NET.mp3";
+				sname = "这是一首测试歌曲";
+			}
+			
 			_mainMc._mcSongName._abcurl = url;
 			_mainMc._mcSongName._abcSname = sname;
 			Controller.getInstance().addCommand(StartupCommand);

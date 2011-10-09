@@ -16,14 +16,14 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'2011-9-29'</value>
+      <value>'2011-10-9'</value>
     </define>
     <optimize>true</optimize>
     <omit-trace-statements>true</omit-trace-statements>
     <verbose-stacktraces>false</verbose-stacktraces>
     <source-path append="true">
       <path-element>D:\rush360\as3long\player\src</path-element>
-      <path-element>D:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
+      <path-element>d:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
       <path-element>D:\rush360\as3long\player\lib\playerUI.swc</path-element>
