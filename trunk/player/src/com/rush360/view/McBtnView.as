@@ -30,17 +30,24 @@ package com.rush360.view
 			var fleg:Boolean = false;
 			if (e.target == _btnPlay)
 			{
-				_btnStop.visible = true;
 				fleg = true;
 			}
 			else if(e.target==_btnStop)
 			{
-				_btnStop.visible = false;
 				fleg = false;
 			}
 			sendWee(SoundCommand, fleg);
 		}
 		
+		public function stop():void
+		{
+			_btnStop.visible = false;
+		}
+		
+		public function play():void
+		{
+			_btnStop.visible = true;
+		}
 	}
 
 }

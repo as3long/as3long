@@ -1,5 +1,6 @@
 package com.rush360.view
 {
+	import com.rush360.controll.SoundCommand;
 	import com.rush360.controll.SoundUrlCommand;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -19,6 +20,7 @@ package com.rush360.view
 		private var mcSongName:MovieClip;
 		private var _txtSongName:TextField;
 		private var _bg:MovieClip;
+		private var _loadJindu:MovieClip;
 		private var _bgWidth:Number;
 		private var _sound:Sound = new Sound();
 		private var _soundChannel:SoundChannel = new SoundChannel();
@@ -30,7 +32,8 @@ package com.rush360.view
 		{
 			mcSongName = _mcSongName;
 			_txtSongName = mcSongName._txtName;
-			_bg = mcSongName._jindu;
+			_bg = mcSongName._jindu1;
+			_loadJindu = mcSongName._jindu;
 			_bgWidth = _bg.width;
 			setSongUrl(mcSongName._abcurl);
 			setSongName(mcSongName._abcSname);
@@ -42,6 +45,8 @@ package com.rush360.view
 			setjindu(_pointNum / getLength());
 		}
 		
+		
+		
 		/**
 		 * 设置进度
 		 * @param	num 进度
@@ -49,10 +54,22 @@ package com.rush360.view
 		public function setjindu(num:Number):void
 		{
 			_bg.width = num * _bgWidth;
+			setLoadJindu();
+		}
+		
+		public function setLoadJindu():void
+		{
+			_loadJindu.width = _sound.bytesLoaded / _sound.bytesTotal * _bgWidth;
+			
+			if (_loadJindu.width - _bg.width < 2)
+			{
+				sendWee(SoundCommand,false);
+			}
 		}
 		
 		public function songStop():void
 		{
+			_isPlaying = false;
 			_pointNum = _soundChannel.position;
 			_soundChannel.stop();
 		}
@@ -65,7 +82,11 @@ package com.rush360.view
 		
 		public function songPlay():void
 		{
-			_soundChannel = _sound.play(_pointNum);
+			if (_isPlaying == false)
+			{
+				_soundChannel = _sound.play(_pointNum);
+				_isPlaying = true;
+			}
 		}
 		
 		public function getLength():Number

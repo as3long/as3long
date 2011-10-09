@@ -17,15 +17,17 @@ package com.rush360.controll
 		
 		override public function execute(data:Object = null):void 
 		{
-			//var firstView:McBtnView = viewLocator.getView(McBtnView);
+			var firstView:McBtnView = viewLocator.getView(McBtnView);
 			var secondView:McSongNameView = viewLocator.getView(McSongNameView);
 			if (data == false)
 			{
 				secondView.songStop();
+				firstView.stop();
 			}
 			else
 			{
 				secondView.songPlay();
+				firstView.play();
 			}
 		}
 	}
