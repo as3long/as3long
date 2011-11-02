@@ -61,9 +61,12 @@ package com.rush360.view
 		{
 			_loadJindu.width = _sound.bytesLoaded / _sound.bytesTotal * _bgWidth;
 			
-			if (_loadJindu.width - _bg.width < 2)
+			if (_loadJindu.width != _bgWidth)
 			{
-				sendWee(SoundCommand,false);
+				if (_loadJindu.width - _bg.width < 2)
+				{
+					sendWee(SoundCommand,false);
+				}
 			}
 		}
 		
@@ -85,8 +88,19 @@ package com.rush360.view
 			if (_isPlaying == false)
 			{
 				_soundChannel = _sound.play(_pointNum);
+				if (_soundChannel.hasEventListener(Event.SOUND_COMPLETE)==false)
+				{
+					_soundChannel.addEventListener(Event.SOUND_COMPLETE, nextSound);
+				}
 				_isPlaying = true;
 			}
+		}
+		
+		private function nextSound(e:Event):void 
+		{
+			_isPlaying = false;
+			_pointNum = 0;
+			songPlay();
 		}
 		
 		public function getLength():Number
