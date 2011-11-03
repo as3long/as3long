@@ -20,7 +20,7 @@ package
 			useTime.x = 100;
 			say = new TextField();
 			say.height = 20;
-			say.width = 300;
+			say.width = 400;
 			say.x = 200;
 			addChild(user);
 			addChild(useTime);

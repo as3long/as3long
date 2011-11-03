@@ -19,7 +19,7 @@ package
 			super(640, 480, MenuState, 1);
 			
 			//想显示鼠标的话就用下面这句
-			FlxG.mouse.show();
+			//FlxG.mouse.show();
 		}
 	}
 	
