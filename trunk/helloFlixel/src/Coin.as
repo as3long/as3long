@@ -48,6 +48,7 @@ package
 			MManage.instance.gameState.coinNum++;
 			if (MManage.instance.gameState.coinNum == 5)
 			{
+				MManage.instance.winState = new WinState();
 				FlxG.state = MManage.instance.winState;
 			}
 		}

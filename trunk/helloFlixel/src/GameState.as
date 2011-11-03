@@ -561,9 +561,9 @@ package
 		{
 			coinGroup = new FlxGroup();
 			var coin:Coin;
-			for (var i:int = 0; i < 15; i++) 
+			for (var i:int = 0; i < 5; i++) 
 			{
-				coin = new Coin(100 + i * 10, 20);
+				coin = new Coin(100 + i * 80, 20);
 				coinGroup.add(coin);
 			}
 			add(coinGroup);
