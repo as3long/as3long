@@ -69,6 +69,11 @@ package
 				suffixString=loaderInfo.parameters["suffix"];
 			}
 			
+			if (loaderInfo.parameters["maxNum"])
+			{
+				maxNum=loaderInfo.parameters["maxNum"];
+			}
+			
 			start();
 		}
 		
