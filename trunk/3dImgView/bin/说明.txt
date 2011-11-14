@@ -1,0 +1,1 @@
+3dImgView.swf?surl=小图片路径&burl=大图片路径&suffix=.jpg(图片后缀)&maxNum=23(图片数量)
