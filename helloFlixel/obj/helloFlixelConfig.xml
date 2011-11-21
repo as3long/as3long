@@ -8,25 +8,24 @@
   <compiler>
     <define append="true">
       <name>CONFIG::debug</name>
-      <value>false</value>
-    </define>
-    <define append="true">
-      <name>CONFIG::release</name>
       <value>true</value>
     </define>
     <define append="true">
-      <name>CONFIG::timeStamp</name>
-      <value>'2011-11-3'</value>
+      <name>CONFIG::release</name>
+      <value>false</value>
     </define>
-    <optimize>true</optimize>
-    <omit-trace-statements>true</omit-trace-statements>
-    <verbose-stacktraces>false</verbose-stacktraces>
+    <define append="true">
+      <name>CONFIG::timeStamp</name>
+      <value>'2011-11-9'</value>
+    </define>
+    <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
       <path-element>D:\rush360\as3long\helloFlixel\src</path-element>
       <path-element>d:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
       <path-element>D:\rush360\as3long\helloFlixel\lib\win.swc</path-element>
+      <path-element>D:\rush360\as3long\helloFlixel\lib\as3httpclient.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

@@ -161,8 +161,8 @@ package
 		{
 			_tool.x = stage.stageWidth / 2;
 			_tool.y = stage.stageHeight - _tool.height;
-			mainSprite.x = _tool.x-mainSprite.width/2;
-			mainSprite.y = (_tool.y+_tool.height)/2 - (mainSprite.height / 2);
+			mainSprite.x = _tool.x-325;
+			mainSprite.y = (_tool.y+_tool.height)/2 - 250;
 			if (mainSprite.x < 0 || mainSprite.y < 0)
 			{
 				mainSprite.x = 0;
