@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<application xmlns="http://ns.adobe.com/air/application/2.7">
+
+  <id>huan</id>
+
+  <versionNumber>1.0</versionNumber>
+
+  <filename>huan</filename>
+
+  <description/>
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+<!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
+
+  <name>圣诞换装</name>
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+<!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
+
+  <copyright/>
+
+  <initialWindow>
+    <content>huan.swf</content>
+    <systemChrome>standard</systemChrome>
+    <transparent>false</transparent>
+    <visible>true</visible>
+    <fullScreen>true</fullScreen>
+    <aspectRatio>portrait</aspectRatio>
+    <renderMode>auto</renderMode>
+    <autoOrients>false</autoOrients>
+  </initialWindow>
+
+  <icon>
+    <image29x29>AppIconsForPublish/t29.png</image29x29>
+    <image57x57>AppIconsForPublish/t57.png</image57x57>
+    <image512x512>AppIconsForPublish/t512.png</image512x512>
+  </icon>
+
+  <customUpdateUI>false</customUpdateUI>
+
+  <allowBrowserInvocation>false</allowBrowserInvocation>
+
+  <iPhone>
+    <InfoAdditions>
+      
+      <![CDATA[<key>UIDeviceFamily</key><array><string>1</string></array>]]>
+    </InfoAdditions>
+    <requestedDisplayResolution>standard</requestedDisplayResolution>
+  </iPhone>
+
+
+
+
+
+
+
+
+
+
+</application>
