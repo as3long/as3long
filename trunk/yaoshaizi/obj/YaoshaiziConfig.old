@@ -16,20 +16,20 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'2012/2/13'</value>
+      <value>'2012-02-13'</value>
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>E:\as3long\yaoshaizi\src</path-element>
+      <path-element>E:\360rush\yaoshaizi\src</path-element>
       <path-element>d:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>E:\as3long\yaoshaizi\lib\AsWing.swc</path-element>
-      <path-element>E:\as3long\yaoshaizi\lib\CocoonP2P-0.8.3-as3.swc</path-element>
+      <path-element>E:\360rush\yaoshaizi\lib\AsWing.swc</path-element>
+      <path-element>E:\360rush\yaoshaizi\lib\CocoonP2P-0.8.3-as3.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>E:\as3long\yaoshaizi\src\com\rush360\Main.as</path-element>
+    <path-element>E:\360rush\yaoshaizi\src\com\rush360\Main.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>
