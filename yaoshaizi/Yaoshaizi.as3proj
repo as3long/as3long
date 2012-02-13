@@ -75,7 +75,7 @@
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
-    <!-- example: <hidden path="..." /> -->
+    <hidden path="src\org" />
   </hiddenPaths>
   <!-- Executed before build -->
   <preBuildCommand />

@@ -46,8 +46,8 @@ package com.rush360.views
 			btnSend.y = 260;
 			btnSend.addActionListener(btn_send_click);
 			//_main.addEventListener(KeyboardEvent.KEY_DOWN, key_down);
-			(ViewLocator.getInstance().getView(MainView) as MainView).window.getContentPane().append(txtField);
-			(ViewLocator.getInstance().getView(MainView) as MainView).window.getContentPane().append(btnSend);
+			(ViewLocator.getInstance().getView(MainView) as MainView).liaotian.getContentPane().append(txtField);
+			(ViewLocator.getInstance().getView(MainView) as MainView).liaotian.getContentPane().append(btnSend);
 		}
 		
 		private function key_down(e:KeyboardEvent):void 

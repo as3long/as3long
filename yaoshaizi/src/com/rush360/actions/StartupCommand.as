@@ -33,22 +33,24 @@ package com.rush360.actions
 			viewLocator.addView(MainView);
 			viewLocator.addView(CharView);
 			viewLocator.addView(SprakCharView);
+			viewLocator.addView(DiceView);
 			//viewLocator.addView(BigImagePlayer, "mc_bigImagePlayer");
 			//viewLocator.addView(ThumbList, "mc_thumbList");
 		}
 		
 		protected function addModels():void {
 			modelLocator.addModel(CharModel);
+			modelLocator.addModel(DiceModel);
 			//modelLocator.addModel(FindLightModel);
 			//modelLocator.addModel(LoadDataModel);
 		}
 		
 		protected function addCommands():void {
-			//controller.addCommand();
 			controller.addCommand(ProxyGetData);
 			controller.executeCommand(ProxyGetData);
 			controller.addCommand(ProxySendData);
 			controller.addCommand(SpeakCharCommand);
+			controller.addCommand(DiceCommand);
 		}
 	}
 

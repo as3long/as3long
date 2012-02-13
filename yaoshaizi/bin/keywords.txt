@@ -1,8 +1,6 @@
 ﻿av
 hz
 sm
-1 3 0
-1 3 3
 16大
 18禁
 1Pondo
@@ -11,9 +9,9 @@ sm
 6-4tianwang
 89-64cdjp
 anime
-av
 A级
 A片
+尼玛
 bignews
 bitch
 boxun
@@ -1465,12 +1463,6 @@ DAFA
 焦典访谈
 六合彩
 &
-(av)
-(hz)
-(sm)
-[av]
-[hz]
-[sm]
 1 3 0
 1 3 3
 16大
@@ -1518,8 +1510,6 @@ hrichina
 huanet
 hypermart
 hypermart.net
-H动画
-H游戏
 incest
 japan
 jiangdongriji
