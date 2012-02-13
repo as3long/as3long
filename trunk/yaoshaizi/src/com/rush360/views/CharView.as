@@ -40,7 +40,7 @@ package com.rush360.views
 			//destPane = new JPanel(new BorderLayout()); 
 			//destPane.append(jpan);
 			//txtField.set
-			(ViewLocator.getInstance().getView(MainView) as MainView).window.getContentPane().append(jpan);
+			(ViewLocator.getInstance().getView(MainView) as MainView).liaotian.getContentPane().append(jpan);
 			//(ViewLocator.getInstance().getView(MainView) as MainView).window.getContentPane().append(jpan);
 			setWeeList([ShaiZiEvent.CHAR_DATA_ADD_STRING]);
 		}
