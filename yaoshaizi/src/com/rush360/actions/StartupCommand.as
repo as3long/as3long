@@ -34,13 +34,14 @@ package com.rush360.actions
 			viewLocator.addView(CharView);
 			viewLocator.addView(SprakCharView);
 			viewLocator.addView(DiceView);
-			//viewLocator.addView(BigImagePlayer, "mc_bigImagePlayer");
-			//viewLocator.addView(ThumbList, "mc_thumbList");
+			viewLocator.addView(UserListView);
+			viewLocator.addView(GameView);
 		}
 		
 		protected function addModels():void {
 			modelLocator.addModel(CharModel);
 			modelLocator.addModel(DiceModel);
+			modelLocator.addModel(UserListModel);
 			//modelLocator.addModel(FindLightModel);
 			//modelLocator.addModel(LoadDataModel);
 		}

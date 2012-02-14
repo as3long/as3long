@@ -22,6 +22,11 @@ package com.rush360.events
 		 * 骰子数据发生改变
 		 */
 		public static const DICE_MODEL_CHANGE:String = 'Dice_model_change';
+		
+		/**
+		 * 用户列表发生改变
+		 */
+		public static const USER_LIST_CHANGE:String = 'user_list_change';
 		public function ShaiZiEvent() 
 		{ 
 			

@@ -28,6 +28,24 @@ package com.rush360.models
 			sendWee(ShaiZiEvent.DICE_MODEL_CHANGE, _numArr);
 		}
 		
+		public function getArrString():String
+		{
+			var arr:Array = _numArr;
+			var str:String = '';
+			for (var i:int = arr.length - 1; i >= 0; i--)
+			{
+				if (i != 0)
+				{
+					str += arr[i] + "|";
+				}
+				else
+				{
+					str += arr[i];
+				}
+			}
+			return str;
+		}
+		
 	}
 
 }

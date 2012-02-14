@@ -69,7 +69,8 @@ package com.rush360.tool
 			}
 			return _instance;
 		}
-	
+		
+		
 	}
 
 }
