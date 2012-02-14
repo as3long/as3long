@@ -1,5 +1,6 @@
 package com.rush360.actions 
 {
+	import com.rush360.models.CharModel;
 	import com.rush360.models.DiceModel;
 	import org.weemvc.as3.control.ICommand;
 	import org.weemvc.as3.control.SimpleCommand;
@@ -25,6 +26,8 @@ package com.rush360.actions
 				arr.push(Math.ceil(Math.random() * 6));
 			}
 			(modelLocator.getModel(DiceModel) as DiceModel).numArr = arr;
+			//(modelLocator.getModel(CharModel) as CharModel).addString("我:"+(modelLocator.getModel(DiceModel) as DiceModel).getArrString());
+			//sendWee(ProxySendData, (modelLocator.getModel(DiceModel) as DiceModel).getArrString());
 		}
 	}
 
