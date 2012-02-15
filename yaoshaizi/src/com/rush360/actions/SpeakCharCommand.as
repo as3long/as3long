@@ -14,7 +14,6 @@ package com.rush360.actions
 	 */
 	public class SpeakCharCommand extends SimpleCommand implements ICommand 
 	{
-		
 		public function SpeakCharCommand() 
 		{
 			
@@ -22,11 +21,21 @@ package com.rush360.actions
 		
 		public override function execute(data:Object = null):void 
 		{
-			trace(data);
+			//trace(data);
 			var str:String = String(data);
-			str=CheckString.getInstance().check(str);
+			str = CheckString.getInstance().check(str);
+			if (str.search(' ')!=-1)
+			{
+				var  re:RegExp = new RegExp();
+				re.source = '\d+ ';
+				var s1:String = str.match()[0];
+				re.source = ' \d';
+				var s2:String = str.match()[0]
+				
+				trace(str);
+			}
 			sendWee(ProxySendData, str);
-			(modelLocator.getModel(CharModel) as CharModel).addString("我:"+str);
+			(modelLocator.getModel(CharModel) as CharModel).addString("我:" + str);
 		}
 		
 	}

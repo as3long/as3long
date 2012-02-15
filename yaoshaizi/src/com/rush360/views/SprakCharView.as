@@ -10,6 +10,7 @@ package com.rush360.views
 	import flash.ui.Keyboard;
 	import org.aswing.JButton;
 	import org.aswing.JTextArea;
+	import org.aswing.JTextField;
 	import org.weemvc.as3.view.IView;
 	import org.weemvc.as3.view.View;
 	import org.aswing.ASColor;
@@ -29,17 +30,19 @@ package com.rush360.views
 	public class SprakCharView extends View implements IView 
 	{
 		private var _main:MovieClip;
-		public var txtField:JTextArea;
+		public var txtField:JTextField;
 		
 		public var btnSend:JButton;
 		public function SprakCharView(main:MovieClip) 
 		{
 			_main = main;
-			txtField = new JTextArea();
+			txtField = new JTextField();
 			txtField.y = 210;
+			txtField.setWordWrap(true);
 			//txtField.type = TextFieldType.INPUT;
 			txtField.setSizeWH(400, 50);
 			txtField.setToolTipText('请输入文本');
+			txtField.addActionListener(btn_send_click);
 			btnSend = new JButton('发送');
 			btnSend.setSizeWH(60, 25);
 			btnSend.x = 340;

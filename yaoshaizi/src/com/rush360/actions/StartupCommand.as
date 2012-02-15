@@ -52,6 +52,7 @@ package com.rush360.actions
 			controller.addCommand(ProxySendData);
 			controller.addCommand(SpeakCharCommand);
 			controller.addCommand(DiceCommand);
+			controller.addCommand(GameCommand);
 		}
 	}
 

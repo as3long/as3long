@@ -64,7 +64,7 @@ package com.rush360.views
 			btnOpen.x = 210;
 			btnOpen.y = 100;
 			
-			jFrame.getContentPane().appendAll(jv, diceSlider, jvLabel, diceLabel, btnSend,btnOpen);
+			jFrame.getContentPane().appendAll(jv, diceSlider, jvLabel, diceLabel, btnSend, btnOpen);
 		}
 		
 		private function jvChange(e:Event):void 

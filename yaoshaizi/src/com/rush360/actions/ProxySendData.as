@@ -19,7 +19,7 @@ package com.rush360.actions
 		
 		public override function execute(data:Object = null):void 
 		{
-			trace('处理发送数据', data);
+			//trace('处理发送数据', data);
 			GameDataProxy.getInstance().channel.sendMessageToAll(data);
 		}
 		
