@@ -14,6 +14,9 @@ package com.rush360.actions
 	 */
 	public class SpeakCharCommand extends SimpleCommand implements ICommand 
 	{
+		private var  re:RegExp =  /\d+/g;
+		private var checkReg:RegExp =/\d+ \d/g;
+		private var arr:Array 
 		public function SpeakCharCommand() 
 		{
 			
@@ -26,6 +29,18 @@ package com.rush360.actions
 			str = CheckString.getInstance().check(str);
 			/*if (str.search(' ')!=-1)
 			{
+<<<<<<< .mine
+				if (checkReg.test(str))
+				{
+					arr = str.match(re);
+					var len:int = arr.length;
+					//trace(str.match(re));
+					//trace(re.exec(str));
+					str = '^&Num' + arr[0] + '^&Point' + arr[1];
+					(modelLocator.getModel(CharModel) as CharModel).addString("我:" + arr[0] + '个' + arr[1] + '点');
+					sendWee(ProxySendData, str);
+				}
+=======
 				var  re:RegExp = new RegExp();
 				//re.source = '\d+ ';
 				var s1:String = str.match()[0];
@@ -33,9 +48,13 @@ package com.rush360.actions
 				var s2:String = str.match()[0]
 				
 				trace(str);
+>>>>>>> .r122
 			}*/
-			sendWee(ProxySendData, str);
-			(modelLocator.getModel(CharModel) as CharModel).addString("我:" + str);
+			else
+			{
+				sendWee(ProxySendData, str);
+				(modelLocator.getModel(CharModel) as CharModel).addString("我:" + str);
+			}
 		}
 		
 	}
