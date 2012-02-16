@@ -24,16 +24,16 @@ package com.rush360.actions
 			//trace(data);
 			var str:String = String(data);
 			str = CheckString.getInstance().check(str);
-			if (str.search(' ')!=-1)
+			/*if (str.search(' ')!=-1)
 			{
 				var  re:RegExp = new RegExp();
-				re.source = '\d+ ';
+				//re.source = '\d+ ';
 				var s1:String = str.match()[0];
-				re.source = ' \d';
+				//re.source = ' \d';
 				var s2:String = str.match()[0]
 				
 				trace(str);
-			}
+			}*/
 			sendWee(ProxySendData, str);
 			(modelLocator.getModel(CharModel) as CharModel).addString("我:" + str);
 		}

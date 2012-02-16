@@ -30,7 +30,7 @@ package com.rush360.tool
 			var t_rep:RegExp = new RegExp("\\r\\n", "gi");
 			txt = txt.replace(t_rep, "|")
 			//_keyArr.push(txt);
-			//txtKey = txt;
+			txtKey = txt;
 			var arr:Array = txt.split("|");
 			var len:int = arr.length;
 			for (var i:int = 0; i < len; i++)
@@ -49,11 +49,13 @@ package com.rush360.tool
 			//var t_rep:RegExp = ;
 			if (st1 != "" && st1 != null)
 			{
-				for (var i:int = _keyArr.length-1; i >= 0; i--)
+				var tReg:RegExp = new RegExp(txtKey, 'gi');
+				st1=st1.replace(tReg, "**");
+				/*for (var i:int = _keyArr.length-1; i >= 0; i--)
 				{
 					var t_rep:RegExp = new RegExp(_keyArr[i], "gi");
 					st1 = st1.replace(t_rep, "**");
-				}
+				}*/
 				//st1 = st1.replace(t_rep, "**");
 			}
 			
