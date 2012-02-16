@@ -30,6 +30,7 @@ package com.rush360.views
 			jFrame.setTitle('游戏控制');
 			jFrame.setSizeWH(420, 200);
 			jFrame.y = 320;
+			jFrame.setResizable(false);
 			jFrame.getContentPane().setLayout(new EmptyLayout());
 			(ViewLocator.getInstance().getView(MainView) as MainView).window.getContentPane().append(jFrame);
 			jFrame.show();
