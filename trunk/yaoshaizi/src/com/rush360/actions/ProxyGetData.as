@@ -63,11 +63,18 @@ package com.rush360.actions
 			(modelLocator.getModel(UserListModel) as UserListModel).removeUser(event.client.clientName);
 			log("Client " + event.client.clientName + " disconnected. Clients connected: " + channel.clients.length);
 		}
+		
+		private var numReg:RegExp =/\d+/g;
 		private function onDataReceived(event:MessageEvent):void
 		{
 			if (String(event.message.data.toString()).indexOf('^&user')!=-1)
 			{
 				(modelLocator.getModel(UserListModel) as UserListModel).addUser(String(event.message.data.toString()).split('^&user', 2)[1]);
+			}
+			else if (String(event.message.data.toString()).indexOf('^&Num')!=-1)
+			{
+				var arr:Array = String(event.message.data.toString()).match(numReg);
+				(modelLocator.getModel(CharModel) as CharModel).addString(event.message.client.clientName + ':' +arr[0] + '个' + arr[1] + '点');
 			}
 			else
 			{//log("Client " +  + " says: '" + event.message.data.toString() + "'");
