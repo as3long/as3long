@@ -52,7 +52,7 @@ package com.rush360.models
 			{
 				if (userInfo == userListArr[i])
 				{
-					userListArr.slice(i, 1);
+					userListArr.splice(i, 1);
 				}
 			}
 			sendWee(ShaiZiEvent.USER_LIST_CHANGE,userListArr);
