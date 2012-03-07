@@ -27,9 +27,8 @@ package com.rush360.actions
 			//trace(data);
 			var str:String = String(data);
 			str = CheckString.getInstance().check(str);
-			/*if (str.search(' ')!=-1)
+			if (str.search(' ')!=-1)
 			{
-<<<<<<< .mine
 				if (checkReg.test(str))
 				{
 					arr = str.match(re);
@@ -40,7 +39,6 @@ package com.rush360.actions
 					(modelLocator.getModel(CharModel) as CharModel).addString("我:" + arr[0] + '个' + arr[1] + '点');
 					sendWee(ProxySendData, str);
 				}
-=======
 				var  re:RegExp = new RegExp();
 				//re.source = '\d+ ';
 				var s1:String = str.match()[0];
@@ -48,8 +46,7 @@ package com.rush360.actions
 				var s2:String = str.match()[0]
 				
 				trace(str);
->>>>>>> .r122
-			}*/
+			}
 			else
 			{
 				sendWee(ProxySendData, str);
