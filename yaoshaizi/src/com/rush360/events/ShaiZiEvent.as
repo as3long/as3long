@@ -27,6 +27,11 @@ package com.rush360.events
 		 * 用户列表发生改变
 		 */
 		public static const USER_LIST_CHANGE:String = 'user_list_change';
+		
+		/**
+		 * 房间列表发生改变
+		 */
+		public static const ROOM_LIST_CHANGE:String = 'room_list_change';
 		public function ShaiZiEvent() 
 		{ 
 			

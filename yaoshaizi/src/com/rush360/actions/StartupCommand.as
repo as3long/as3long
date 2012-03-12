@@ -36,12 +36,14 @@ package com.rush360.actions
 			viewLocator.addView(DiceView);
 			viewLocator.addView(UserListView);
 			viewLocator.addView(GameView);
+			viewLocator.addView(RoomListView);
 		}
 		
 		protected function addModels():void {
 			modelLocator.addModel(CharModel);
 			modelLocator.addModel(DiceModel);
 			modelLocator.addModel(UserListModel);
+			modelLocator.addModel(RoomListModel);
 			//modelLocator.addModel(FindLightModel);
 			//modelLocator.addModel(LoadDataModel);
 		}
@@ -53,6 +55,9 @@ package com.rush360.actions
 			controller.addCommand(SpeakCharCommand);
 			controller.addCommand(DiceCommand);
 			controller.addCommand(GameCommand);
+			controller.addCommand(RoomCommand);
+			controller.addCommand(GateWayCommand);
+			controller.executeCommand(GateWayCommand);
 		}
 	}
 
