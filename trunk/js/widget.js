@@ -1,1 +1,383 @@
-define("#widget/1.0.0/daparser",["$"],function(e,t){function o(e){return e.toLowerCase().replace(r,function(e,t){return(t+"").toUpperCase()})}function u(e){for(var t in e)if(e.hasOwnProperty(t)){var n=e[t];if(typeof n!="string")continue;i.test(n)?(n=n.replace(/'/g,'"'),e[t]=u(s(n))):e[t]=a(n)}return e}function a(e){if(e.toLowerCase()==="false")e=!1;else if(e.toLowerCase()==="true")e=!0;else if(/\d/.test(e)&&/[^a-z]/i.test(e)){var t=parseFloat(e);t+""===e&&(e=t)}return e}var n=e("$");t.parseElement=function(e,t){e=n(e)[0];var r={};if(e.dataset)r=n.extend({},e.dataset);else{var i=e.attributes;for(var s=0,a=i.length;s<a;s++){var f=i[s],l=f.name;l.indexOf("data-")===0&&(l=o(l.substring(5)),r[l]=f.value)}}return t===!0?r:u(r)};var r=/-([a-z])/g,i=/^\s*[\[{].*[\]}]\s*$/,s=this.JSON?JSON.parse:n.parseJSON}),define("#widget/1.0.0/auto-render",["$"],function(e,t){var n=e("$"),r="data-widget-auto-rendered";t.autoRender=function(e){return(new this(e)).render()},t.autoRenderAll=function(e,i){typeof e=="function"&&(i=e,e=null),e=n(e||document.body);var s=[],o=[];e.find("[data-widget]").each(function(e,n){t.isDataApiOff(n)||(s.push(n.getAttribute("data-widget").toLowerCase()),o.push(n))}),s.length&&seajs.use(s,function(){for(var e=0;e<arguments.length;e++){var t=arguments[e],s=n(o[e]);if(s.attr(r))continue;t.autoRender&&t.autoRender({element:s,renderType:"auto"}),s.attr(r,"true")}i&&i()})};var i=n(document.body).attr("data-api")==="off";t.isDataApiOff=function(e){var t=n(e).attr("data-api");return t==="off"||t!=="on"&&i}}),define("#widget/1.0.0/widget",["./daparser","./auto-render","#base/1.0.0/base","#class/1.0.0/class","#events/1.0.0/events","$"],function(e,t,n){function d(){return"widget-"+p++}function v(e){return h.call(e)==="[object String]"}function m(e){return h.call(e)==="[object Function]"}function g(e){for(var t in e)if(e.hasOwnProperty(t))return!1;return!0}function b(e){return y(document.documentElement,e)}function w(e){return e.charAt(0).toUpperCase()+e.substring(1)}function T(e){return m(e.events)&&(e.events=e.events()),e.events}function N(e,t){var n=e.match(E),r=n[1]+u+t.cid,i=n[2]||undefined;return i&&i.indexOf("{{")>-1&&(i=C(i,t)),{type:r,selector:i}}function C(e,t){return e.replace(S,function(e,n){var r=n.split("."),i=t,s;while(s=r.shift())i===t.attrs?i=t.get(s):i=i[s];return v(i)?i:x})}function k(e){return e==null||(v(e)||i.isArray(e))&&e.length===0||i.isPlainObject(e)&&g(e)}var r=e("#base/1.0.0/base"),i=e("$"),s=e("./daparser"),o=e("./auto-render"),u=".delegate-events-",a="_onRender",f="data-widget-cid",l={},c=r.extend({propsInAttrs:["element","template","model","events"],element:null,template:"<div></div>",model:null,events:null,attrs:{id:"",className:"",style:{},parentNode:document.body},initialize:function(e){this.cid=d();var t=this._parseDataAttrsConfig(e);this.initAttrs(e,t),this.parseElement(),this.initProps(),this.delegateEvents(),this.setup(),this._stamp()},_parseDataAttrsConfig:function(e){var t,n;return e&&(t=i(e.element)),t&&t[0]&&!o.isDataApiOff(t)&&(n=s.parseElement(t)),n},parseElement:function(){var e=this.element;e?this.element=i(e):this.get("template")&&this.parseElementFromTemplate();if(!this.element||!this.element[0])throw new Error("element is invalid")},parseElementFromTemplate:function(){this.element=i(this.get("template"))},initProps:function(){},delegateEvents:function(e,t){e||(e=T(this));if(!e)return;if(v(e)&&m(t)){var n={};n[e]=t,e=n}for(var r in e){if(!e.hasOwnProperty(r))continue;var i=N(r,this),s=i.type,o=i.selector;(function(e,t){var n=function(n){m(e)?e.call(t,n):t[e](n)};o?t.element.on(s,o,n):t.element.on(s,n)})(e[r],this)}return this},undelegateEvents:function(e){var t={};return arguments.length===0?t.type=u+this.cid:t=N(e,this),this.element.off(t.type,t.selector),this},setup:function(){},render:function(){this.rendered||(this._renderAndBindAttrs(),this.rendered=!0);var e=this.get("parentNode");return e&&!b(this.element[0])&&this.element.appendTo(e),this},_renderAndBindAttrs:function(){var e=this,t=e.attrs;for(var n in t){if(!t.hasOwnProperty(n))continue;var r=a+w(n);if(this[r]){var i=this.get(n);k(i)||this[r](i,undefined,n),function(t){e.on("change:"+n,function(n,r,i){e[t](n,r,i)})}(r)}}},_onRenderId:function(e){this.element.attr("id",e)},_onRenderClassName:function(e){this.element.addClass(e)},_onRenderStyle:function(e){this.element.css(e)},_stamp:function(){var e=this.cid;this.element.attr(f,e),l[e]=this},$:function(e){return this.element.find(e)},destroy:function(){this.undelegateEvents(),delete l[this.cid],c.superclass.destroy.call(this)}});c.query=function(e){var t=i(e).eq(0),n;return t&&(n=t.attr(f)),l[n]},c.autoRender=o.autoRender,c.autoRenderAll=o.autoRenderAll,c.StaticsWhiteList=["autoRender"],n.exports=c;var h=Object.prototype.toString,p=0,y=i.contains||function(e,t){return!!(e.compareDocumentPosition(t)&16)},E=/^(\S+)\s*(.*)$/,S=/{{([^}]+)}}/g,x="INVALID_SELECTOR"});
+define(function(require, exports, module) {
+
+  // Widget
+  // ---------
+  // Widget 是与 DOM 元素相关联的非工具类组件，主要负责 View 层的管理。
+  // Widget 组件具有四个要素：描述状态的 attributes 和 properties，描述行为的 events
+  // 和 methods。Widget 基类约定了这四要素创建时的基本流程和最佳实践。
+
+  var Base = require('base')
+  var $ = require('$')
+  var DAParser = require('./daparser')
+  var AutoRender = require('./auto-render')
+
+  var DELEGATE_EVENT_NS = '.delegate-events-'
+  var ON_RENDER = '_onRender'
+  var DATA_WIDGET_CID = 'data-widget-cid'
+
+  // 所有初始化过的 Widget 实例
+  var cachedInstances = {}
+
+
+  var Widget = Base.extend({
+
+    // config 中的这些键值会直接添加到实例上，转换成 properties
+    propsInAttrs: ['element', 'template', 'model', 'events'],
+
+    // 与 widget 关联的 DOM 元素
+    element: null,
+
+    // 默认模板
+    template: '<div></div>',
+
+    // 默认数据模型
+    model: null,
+
+    // 事件代理，格式为：
+    //   {
+    //     'mousedown .title': 'edit',
+    //     'click {{attrs.saveButton}}': 'save'
+    //     'click .open': function(ev) { ... }
+    //   }
+    events: null,
+
+    // 属性列表
+    attrs: {
+      // 基本属性
+      id: '',
+      className: '',
+      style: {},
+
+      // 组件的默认父节点
+      parentNode: document.body
+    },
+
+    // 初始化方法，确定组件创建时的基本流程：
+    // 初始化 attrs --》 初始化 props --》 初始化 events --》 子类的初始化
+    initialize: function(config) {
+      this.cid = uniqueCid()
+
+      // 初始化 attrs
+      var dataAttrsConfig = this._parseDataAttrsConfig(config)
+      this.initAttrs(config, dataAttrsConfig)
+
+      // 初始化 props
+      this.parseElement()
+      this.initProps()
+
+      // 初始化 events
+      this.delegateEvents()
+
+      // 子类自定义的初始化
+      this.setup()
+
+      // 保存实例信息
+      this._stamp()
+    },
+
+    // 解析通过 data-attr 设置的 api
+    _parseDataAttrsConfig: function(config) {
+      var element, dataAttrsConfig
+      config && (element = $(config.element))
+
+      // 解析 data-api 时，只考虑用户传入的 element，不考虑来自继承或从模板构建的
+      if (element && element[0] && !AutoRender.isDataApiOff(element)) {
+        dataAttrsConfig = DAParser.parseElement(element)
+      }
+
+      return dataAttrsConfig
+    },
+
+    // 构建 this.element
+    parseElement: function() {
+      var element = this.element
+
+      if (element) {
+        this.element = $(element)
+      }
+      // 未传入 element 时，从 template 构建
+      else if (this.get('template')) {
+        this.parseElementFromTemplate()
+      }
+
+      // 如果对应的 DOM 元素不存在，则报错
+      if (!this.element || !this.element[0]) {
+        throw new Error('element is invalid')
+      }
+    },
+
+    // 从模板中构建 this.element
+    parseElementFromTemplate: function() {
+      this.element = $(this.get('template'))
+    },
+
+    // 负责 properties 的初始化，提供给子类覆盖
+    initProps: function() {
+    },
+
+    // 注册事件代理
+    delegateEvents: function(events, handler) {
+      events || (events = getEvents(this))
+      if (!events) return
+
+      // 允许使用：widget.delegateEvents('click p', function(ev) { ... })
+      if (isString(events) && isFunction(handler)) {
+        var o = {}
+        o[events] = handler
+        events = o
+      }
+
+      // key 为 'event selector'
+      for (var key in events) {
+        if (!events.hasOwnProperty(key)) continue
+
+        var args = parseEventKey(key, this)
+        var eventType = args.type
+        var selector = args.selector
+
+        ;(function(handler, widget) {
+
+          var callback = function(ev) {
+            if (isFunction(handler)) {
+              handler.call(widget, ev)
+            } else {
+              widget[handler](ev)
+            }
+          }
+
+          // delegate
+          if (selector) {
+            widget.element.on(eventType, selector, callback)
+          }
+          // normal bind
+          // 分开写是为了兼容 zepto，zepto 的判断不如 jquery 强劲有力
+          else {
+            widget.element.on(eventType, callback)
+          }
+
+        })(events[key], this)
+      }
+
+      return this
+    },
+
+    // 卸载事件代理
+    undelegateEvents: function(eventKey) {
+      var args = {}
+
+      // 卸载所有
+      if (arguments.length === 0) {
+        args.type = DELEGATE_EVENT_NS + this.cid
+      }
+      // 卸载特定类型：widget.undelegateEvents('click li')
+      else {
+        args = parseEventKey(eventKey, this)
+      }
+
+      this.element.off(args.type, args.selector)
+      return this
+    },
+
+    // 提供给子类覆盖的初始化方法
+    setup: function() {
+    },
+
+    // 将 widget 渲染到页面上
+    // 渲染不仅仅包括插入到 DOM 树中，还包括样式渲染等
+    // 约定：子类覆盖时，需保持 `return this`
+    render: function() {
+
+      // 让渲染相关属性的初始值生效，并绑定到 change 事件
+      if (!this.rendered) {
+        this._renderAndBindAttrs()
+        this.rendered = true
+      }
+
+      // 插入到文档流中
+      var parentNode = this.get('parentNode')
+      if (parentNode && !isInDocument(this.element[0])) {
+        this.element.appendTo(parentNode)
+      }
+
+      return this
+    },
+
+    // 让属性的初始值生效，并绑定到 change:attr 事件上
+    _renderAndBindAttrs: function() {
+      var widget = this
+      var attrs = widget.attrs
+
+      for (var attr in attrs) {
+        if (!attrs.hasOwnProperty(attr)) continue
+        var m = ON_RENDER + ucfirst(attr)
+
+        if (this[m]) {
+          var val = this.get(attr)
+
+          // 让属性的初始值生效。注：默认空值不触发
+          if (!isEmptyAttrValue(val)) {
+            this[m](val, undefined, attr)
+          }
+
+          // 将 _onRenderXx 自动绑定到 change:xx 事件上
+          (function(m) {
+            widget.on('change:' + attr, function(val, prev, key) {
+              widget[m](val, prev, key)
+            })
+          })(m)
+        }
+      }
+    },
+
+    _onRenderId: function(val) {
+      this.element.attr('id', val)
+    },
+
+    _onRenderClassName: function(val) {
+      this.element.addClass(val)
+    },
+
+    _onRenderStyle: function(val) {
+      this.element.css(val)
+    },
+
+    // 让 element 与 Widget 实例建立关联
+    _stamp: function() {
+      var cid = this.cid
+
+      this.element.attr(DATA_WIDGET_CID, cid)
+      cachedInstances[cid] = this
+    },
+
+    // 在 this.element 内寻找匹配节点
+    $: function(selector) {
+      return this.element.find(selector)
+    },
+
+    destroy: function() {
+      this.undelegateEvents()
+      delete cachedInstances[this.cid]
+      Widget.superclass.destroy.call(this)
+    }
+  })
+
+
+  // 查询与 selector 匹配的第一个 DOM 节点，得到与该 DOM 节点相关联的 Widget 实例
+  Widget.query = function(selector) {
+    var element = $(selector).eq(0)
+    var cid
+
+    element && (cid = element.attr(DATA_WIDGET_CID))
+    return cachedInstances[cid]
+  }
+
+
+  Widget.autoRender = AutoRender.autoRender
+  Widget.autoRenderAll = AutoRender.autoRenderAll
+  Widget.StaticsWhiteList = ['autoRender']
+
+  module.exports = Widget
+
+
+  // Helpers
+  // ------
+
+  var toString = Object.prototype.toString
+  var cidCounter = 0
+
+  function uniqueCid() {
+    return 'widget-' + cidCounter++
+  }
+
+  function isString(val) {
+    return toString.call(val) === '[object String]'
+  }
+
+  function isFunction(val) {
+    return toString.call(val) === '[object Function]'
+  }
+
+  function isEmptyObject(o) {
+    for (var p in o) {
+      if (o.hasOwnProperty(p)) return false
+    }
+    return true
+  }
+
+  // Zepto 上没有 contains 方法
+  var contains = $.contains || function(a, b) {
+    //noinspection JSBitwiseOperatorUsage
+    return !!(a.compareDocumentPosition(b) & 16)
+  }
+
+  function isInDocument(element) {
+    return contains(document.documentElement, element)
+  }
+
+  function ucfirst(str) {
+    return str.charAt(0).toUpperCase() + str.substring(1)
+  }
+
+
+  var EVENT_KEY_SPLITTER = /^(\S+)\s*(.*)$/
+  var EXPRESSION_FLAG = /{{([^}]+)}}/g
+  var INVALID_SELECTOR = 'INVALID_SELECTOR'
+
+  function getEvents(widget) {
+    if (isFunction(widget.events)) {
+      widget.events = widget.events()
+    }
+    return widget.events
+  }
+
+  function parseEventKey(eventKey, widget) {
+    var match = eventKey.match(EVENT_KEY_SPLITTER)
+    var eventType = match[1] + DELEGATE_EVENT_NS + widget.cid
+
+    // 当没有 selector 时，需要设置为 undefined，以使得 zepto 能正确转换为 bind
+    var selector = match[2] || undefined
+
+    if (selector && selector.indexOf('{{') > -1) {
+      selector = parseExpressionInEventKey(selector, widget)
+    }
+
+    return {
+      type: eventType,
+      selector: selector
+    }
+  }
+
+  // 解析 eventKey 中的 {{xx}}, {{yy}}
+  function parseExpressionInEventKey(selector, widget) {
+
+    return selector.replace(EXPRESSION_FLAG, function(m, name) {
+      var parts = name.split('.')
+      var point = widget, part
+
+      while (part = parts.shift()) {
+        if (point === widget.attrs) {
+          point = widget.get(part)
+        } else {
+          point = point[part]
+        }
+      }
+
+      // 已经是 className，比如来自 dataset 的
+      if (isString(point)) {
+        return point
+      }
+
+      // 不能识别的，返回无效标识
+      return INVALID_SELECTOR
+    })
+  }
+
+
+  // 对于 attrs 的 value 来说，以下值都认为是空值： null, undefined, '', [], {}
+  function isEmptyAttrValue(o) {
+    return o == null || // null, undefined
+        (isString(o) || $.isArray(o)) && o.length === 0 || // '', []
+        $.isPlainObject(o) && isEmptyObject(o); // {}
+  }
+
+});
