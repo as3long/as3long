@@ -16,20 +16,33 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'2012/3/8'</value>
+      <value>'2013/4/1 星期一'</value>
+    </define>
+    <define append="true">
+      <name>CONFIG::air</name>
+      <value>false</value>
+    </define>
+    <define append="true">
+      <name>CONFIG::mobile</name>
+      <value>false</value>
+    </define>
+    <define append="true">
+      <name>CONFIG::desktop</name>
+      <value>false</value>
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>E:\as3long\yaoshaizi\src</path-element>
-      <path-element>d:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
+      <path-element>E:\code\as3long\yaoshaizi\src</path-element>
+      <path-element>E:\code\as3longLib</path-element>
+      <path-element>d:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>E:\as3long\yaoshaizi\lib\AsWing.swc</path-element>
-      <path-element>E:\as3long\yaoshaizi\lib\CocoonP2P-0.8.3-as3.swc</path-element>
+      <path-element>E:\code\as3long\yaoshaizi\lib\AsWing.swc</path-element>
+      <path-element>E:\code\as3long\yaoshaizi\lib\CocoonP2P-0.8.3-as3.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>E:\as3long\yaoshaizi\src\com\rush360\Main.as</path-element>
+    <path-element>E:\code\as3long\yaoshaizi\src\com\rush360\Main.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>
